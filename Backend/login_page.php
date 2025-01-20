@@ -1,7 +1,11 @@
 <?php 
 
-if (isset($_GET["error"])){
-  $error_message = "Benutzer existiert nicht.";
+if (isset($_GET["msg"])){
+  if ($_GET["msg"] == 1) {
+    $error_message = "Benutzer existiert nicht.";
+  } else if ($_GET["msg"] == 2) {
+    $success_message = "Benutzerkonto erfolgreich hinzugefügt. Bitte anmelden.";
+  }
 }
 
 ?>
@@ -36,6 +40,11 @@ if (isset($_GET["error"])){
       <?php if (isset($error_message)): ?>
         <div class="alert alert-danger" role="alert">
           <?php echo $error_message; ?>
+        </div>
+      <?php endif; ?>
+      <?php if (isset($success_message)): ?>
+        <div class="alert alert-success" role="alert">
+          <?php echo $success_message; ?>
         </div>
       <?php endif; ?>
       <form method="POST" action="login.php">

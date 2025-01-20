@@ -13,6 +13,7 @@ if (isset($_POST['username'])) {
 
     if (mysqli_query($conn, $add_user)) {
         echo "User hinzugefügt.";
+        header("Location: http://localhost/api-docs-platform/Backend/login_page.php?msg=2");
     } else {
         echo "Error in Database Entry";
     }
