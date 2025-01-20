@@ -1,9 +1,22 @@
+<?php 
+include "../../Backend/connect.php";
+
+$projekt = $_GET["doku"];
+
+$sql_projectinfo = "SELECT * FROM projekte WHERE pid =" . $projekt . "";
+$result_projectinfo = mysqli_query($conn, $sql_projectinfo);
+$row = $result_projectinfo->fetch_assoc();
+
+$sql_postinfo = "SELECT * FROM posts WHERE to_pid = " . $projekt . "";
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dokumentation App</title>
+    <title><?php echo $row["name"]; ?> - Dokumentation App</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
       body {
@@ -43,7 +56,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color:rgb(54, 204, 117);">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><b>Doku App</b></a>
+      <a class="navbar-brand" href="#"><b>Doku App</b> - <?php echo $row["name"]; ?></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -75,27 +88,24 @@
     <div class="sidebar" id="sidebar">
       <h5>Inhaltsverzeichnis</h5>
       <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Einleitung</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Kapitel 1</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Kapitel 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Kapitel 3</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Kapitel 4</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Kapitel 5</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">FAQs</a>
-        </li>
+        <?php 
+        
+        $result_postsinfo = mysqli_query($conn, $sql_postinfo);
+        
+        if (mysqli_num_rows($result_postsinfo) > 0) {
+          // output data of each row
+          while($row_post = mysqli_fetch_assoc($result_postsinfo)) {
+
+            echo "<li class='nav-item'>";
+            echo "<a class='nav-link' href='#'>" . $row_post["name"] . "</a>";
+            echo "</li>";
+
+          }
+        } else {
+          echo "";
+        }
+        
+        ?>
       </ul>
     </div>
 
@@ -104,14 +114,27 @@
 
     <div class="row">
         <div class="col-6">
-            <h1>Willkommen zur Dokumentation</h1>
-            <p>Hier finden Sie alle wichtigen Informationen.</p>
-            <h2>Testüberschrift</h2>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-            <h2>Testüberschrift 2</h2>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-            <h2>Testüberschrift 3</h2>
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+<?php 
+
+$result_postsinfo = mysqli_query($conn, $sql_postinfo);
+
+
+if (mysqli_num_rows($result_postsinfo) > 0) {
+  // output data of each row
+  while($row_post = mysqli_fetch_assoc($result_postsinfo)) {
+    echo "<h1>" . $row_post["name"] ."</h1><br>";
+    echo $row_post["content"];
+    echo "<br><br>";
+  }
+} else {
+  echo "Diese Dokumentation ist leider leer....";
+}
+
+mysqli_close($conn);
+?>
+
+
         </div>
         <div class="col-4">
         
@@ -124,6 +147,7 @@
 
   <!-- Footer -->
   <footer class="footer">
+    <p><b>Dokumentation von <?php echo $row["author"]; ?></b></p>
     <p><b>&copy; 2025. Alle Rechte vorbehalten.</b></p>
   </footer>
 
