@@ -20,13 +20,17 @@ if (isset($_POST['username'])) {
 
             if(password_verify($passwort_input, $hashed_password)) {
                 $_SESSION['use'] = $user_input;
-                echo '<script type="text/javascript"> window.open("http://localhost/API-DOCS-PLATFORM/frontend/index.php","_self");</script>';
+                echo '<script type="text/javascript"> window.open("http://localhost/API-DOCS-PLATFORM/frontend/docs","_self");</script>';
                 echo "Logged In!";
-            } 
+            } else {
+                echo "Passwort Falsch";
+                header("Location: http://localhost/api-docs-platform/Backend/login_page.php?error=True");
+            }
         }
         } 
         else {
-            echo "Error: User does not exist!";
+            echo "Fehler im Benutzer";
+            header("Location: http://localhost/api-docs-platform/Backend/login_page.php?error=True");
         }
     
 }
