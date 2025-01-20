@@ -10,7 +10,6 @@ if (isset($_POST['username'])) {
     $password_hashed = password_hash($passwort_input, PASSWORD_DEFAULT);
     
     $add_user = "INSERT INTO user (username, firstname, lastname, password) VALUES ('$username_input', '$firstname_input', '$lastname_input', '$password_hashed')";
-    $result = mysqli_query($conn, $add_user);
 
     if (mysqli_query($conn, $add_user)) {
         echo "User hinzugefügt.";
