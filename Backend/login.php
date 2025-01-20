@@ -24,13 +24,13 @@ if (isset($_POST['username'])) {
                 echo "Logged In!";
             } else {
                 echo "Passwort Falsch";
-                header("Location: http://localhost/api-docs-platform/Backend/login_page.php?error=True");
+                header("Location: http://localhost/api-docs-platform/Backend/login_page.php?msg=1");
             }
         }
         } 
         else {
             echo "Fehler im Benutzer";
-            header("Location: http://localhost/api-docs-platform/Backend/login_page.php?error=True");
+            header("Location: http://localhost/api-docs-platform/Backend/login_page.php?msg=1");
         }
     
 }
