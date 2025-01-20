@@ -95,22 +95,64 @@ else {
           while($row_project = mysqli_fetch_assoc($result_projects)) {
 
             echo "<li class='nav-item'>";
-            echo "
-                <div class='row'>
-                    <div class='col-8'>
-                        <a class='nav-link' href='admin_main.php?project=" . $row_project["pid"] . "'>" . $row_project["name"] . "</a>
-                    </div>
-                    <div class='col-2'>
-                        <a class='nav-link' href='admin_main.php?project=" . $row_project["pid"] . "'>✏️</a>
-                    </div>
-                    <div class='col-2'>
-                        <a class='nav-link' href='admin_main.php?project=" . $row_project["pid"] . "'>🗑️</a>
+            echo "<div class='container'>
+                    <div class='row'>
+                        <div class='col-8'>
+                            <a class='nav-link' href='admin_main.php?project=" . $row_project["pid"] . "'>" . $row_project["name"] . "</a>
+                        </div>
+                        <div class='col-2'>
+                            <button type='button' class='btn shadow-none' data-bs-toggle='modal' data-bs-target='#edit" . $row_project["pid"] . "'>✏️</button>
+                        </div>
+                        <div class='col-2'>
+                            <button type='button'  class='btn shadow-none' data-bs-toggle='modal' data-bs-target='#delete" . $row_project["pid"] . "'>🗑️</button>
+                        </div>
                     </div>
                 </div>";
             echo "</li>";
 
+            echo "<div class='modal' id='edit" . $row_project["pid"] . "' tabindex='-1' role='dialog'>
+            <div class='modal-dialog' role='document'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title'>Projektnamen ändern</h5>
+                    </div>
+                    <div class='modal-body'>
+                        <form action='editproject.php' method='GET'>
+                          <div class='form-group'>
+                            <input type='text' id='pid' name='pid' value='".$row_project["pid"] ."' hidden>
+                            <input type='text' class='form-control' id='projectname' name='projectname' value='" . $row_project["name"] . "'>
+                            <input type='text' class='form-control' id='projectdescription' name='projectdescription' value='" . $row_project["description"] . "'>
+                          </div>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='submit' class='btn btn-primary'>Submit</button>
+                        </form>
+                        <a href='admin_main.php' class='btn btn-secondary'>Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>";
+
+        echo "<div class='modal' id='delete" . $row_project["pid"] . "' tabindex='-1' role='dialog'>
+            <div class='modal-dialog' role='document'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title'>Projekt Löschen?</h5>
+                    </div>
+                    <div class='modal-body'>
+                        <p>Bist du sicher, dass du dieses Projekt endgültig löschen möchtest?</p>
+                    </div>
+                    <div class='modal-footer'>
+                        <a href='deleteproject.php?pid=" . $row_project["pid"] . "' class='btn btn-danger'>Delete</a>
+                        <a href='admin_main.php' class='btn btn-secondary'>Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>";
+
           }
-        } else {
+        } 
+        else {
           echo "";
         }
         
@@ -135,11 +177,18 @@ else {
     $sql_postinfo = "SELECT * FROM posts WHERE to_pid = " . $pid . "";
     $result_postsinfo = mysqli_query($conn, $sql_postinfo);
 
+    $sql_projekt = "SELECT * FROM projekte WHERE pid = " . $pid . "";
+    $result_projekt = mysqli_query($conn, $sql_projekt);
+    $projekt = mysqli_fetch_assoc($result_projekt);
+
+    echo "<h1>" . $projekt["name"] ."</h1>";
+    echo "<h5>" . $projekt["description"] ."</h1><br>";
 
     if (mysqli_num_rows($result_postsinfo) > 0) {
     // output data of each row
     while($row_post = mysqli_fetch_assoc($result_postsinfo)) {
-        echo "<h1>" . $row_post["name"] ."</h1><br>";
+       
+        echo "<h2><a href='editpost_page.php?poid=" . $row_post["poid"] . "'>".  $row_post["name"]  ."</a></h2><br>";
         echo $row_post["content"];
         echo "<br><br>";
     }
