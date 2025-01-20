@@ -2,9 +2,11 @@
 
 if (isset($_GET["msg"])){
   if ($_GET["msg"] == 1) {
-    $error_message = "Benutzer existiert nicht.";
+    $error_message = "Passwort fehlerhaft.";
   } else if ($_GET["msg"] == 2) {
     $success_message = "Benutzerkonto erfolgreich hinzugefügt. Bitte anmelden.";
+  } else if ($_GET["msg"] == 3) {
+    $error_message = "Benutzerkonto existiert nicht.";
   }
 }
 

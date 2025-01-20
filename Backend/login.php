@@ -30,7 +30,7 @@ if (isset($_POST['username'])) {
         } 
         else {
             echo "Fehler im Benutzer";
-            header("Location: http://localhost/api-docs-platform/Backend/login_page.php?msg=1");
+            header("Location: http://localhost/api-docs-platform/Backend/login_page.php?msg=3");
         }
     
 }
