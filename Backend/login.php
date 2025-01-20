@@ -1,9 +1,7 @@
 <?php 
 include 'connect.php';
-session_start();
-$pdo = new PDO('mysql:host=localhost;dbname=test', 'root', '');
  
-if(isset($_GET['user']) && ($_GET['password'])) {
+if(isset($_GET['user'])) {
     $user_input = $_POST['user'];
     $passwort_input = $_POST['passwort'];
     
@@ -18,10 +16,10 @@ if(isset($_GET['user']) && ($_GET['password'])) {
                 echo "Logged In!";
             } 
         }
-      } 
-      else {
-        echo "Error!";
-      }
+        } 
+        else {
+            echo "Error!";
+        }
     
 }
 
