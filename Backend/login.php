@@ -3,7 +3,7 @@ session_start();
 include 'connect.php';
  
 if(isset($_SESSION['use'])) {
-    header("http://localhost/API-DOCS-PLATFORM/frontend/index.php"); 
+    header("http://localhost/API-DOCS-PLATFORM/Backend/admin_main.php"); 
 }
 
 
@@ -20,7 +20,7 @@ if (isset($_POST['username'])) {
 
             if(password_verify($passwort_input, $hashed_password)) {
                 $_SESSION['use'] = $user_input;
-                echo '<script type="text/javascript"> window.open("http://localhost/API-DOCS-PLATFORM/frontend/docs","_self");</script>';
+                echo '<script type="text/javascript"> window.open("http://localhost/API-DOCS-PLATFORM/Backend/admin_main.php","_self");</script>';
                 echo "Logged In!";
             } else {
                 echo "Passwort Falsch";

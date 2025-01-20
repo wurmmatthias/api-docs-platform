@@ -26,7 +26,7 @@ else {
         display: flex;
       }
       .sidebar {
-        width: 300px;
+        width: 400px;
         background-color: #f8f9fa;
         padding: 20px;
         transition: transform 0.3s ease;
@@ -83,9 +83,42 @@ else {
   <!-- <button class="btn btn-primary toggle-sidebar-btn" onclick="toggleSidebar()">Toggle Sidebar</button> -->
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-      <h5>Alle Projekte</h5>
+      <div class='row'>
+          <div class='col-8'>
+            <button type='button' class='btn shadow-none'><h5>Alle Projekte</h5></button>
+          </div>
+          <div class='col-2'>
+          </div>
+          <div class='col-2'>
+            <button type="button" class="btn shadow-none" data-bs-toggle="modal" data-bs-target="#addproject">🔶</button>
+          </div>
+      </div>
       <ul class="nav flex-column">
-        <?php 
+
+
+<?php 
+echo "<div class='modal' id='addproject' tabindex='-1' role='dialog'>
+  <div class='modal-dialog' role='document'>
+    <div class='modal-content'>
+        <div class='modal-header'>
+            <h5 class='modal-title'>Projekt hinzufügen</h5>
+        </div>
+        <div class='modal-body'>
+            <form action='addproject.php' method='POST'>
+              <div class='form-group'>
+                <input type='text' class='form-control' id='projectname' name='projectname' placeholder='Projektname'>
+                <br>
+                 <textarea class='form-control' id='projectdescription' name='projectdescription' rows='15' placeholder='Projektbeschreibung'></textarea><br><br>
+              </div>
+        </div>
+        <div class='modal-footer'>
+            <button type='submit' class='btn btn-primary'>Submit</button>
+            </form>
+            <a href='admin_main.php' class='btn btn-secondary'>Close</a>
+        </div>
+    </div>
+  </div>
+</div>";
 
         $sql_projects = "SELECT * FROM projekte";
         $result_projects = mysqli_query($conn, $sql_projects);
@@ -121,7 +154,7 @@ else {
                           <div class='form-group'>
                             <input type='text' id='pid' name='pid' value='".$row_project["pid"] ."' hidden>
                             <input type='text' class='form-control' id='projectname' name='projectname' value='" . $row_project["name"] . "'>
-                            <input type='text' class='form-control' id='projectdescription' name='projectdescription' value='" . $row_project["description"] . "'>
+                            <textarea class='form-control' id='projectdescription' name='projectdescription' rows='15' placeholder='Projektbeschreibung'>" . $row_project["description"] . "</textarea><br><br>
                           </div>
                     </div>
                     <div class='modal-footer'>
@@ -169,7 +202,7 @@ else {
 <?php 
 
 if ($pid == "") {
-    echo "<h1>Bitte wähle ein Projekt aus der linken Spalte!</h1><br>";
+    echo "<h2>Bitte wähle ein Projekt aus der linken Spalte!</h2><br>";
     echo "Hier kannst du die Posts bearbeiten. Bitte wähle zunächst das Projekt, in dem sich der Post befindet.";
     echo "<br><br>";
 }
