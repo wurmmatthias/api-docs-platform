@@ -108,7 +108,7 @@ else {
           <div class='col-2'>
           </div>
           <div class='col-2'>
-            <button type="button" class="btn shadow-none" data-bs-toggle="modal" data-bs-target="#addproject">🔶</button>
+            <button type="button" class="btn shadow-none" data-bs-toggle="modal" data-bs-target="#addproject">➕</button>
           </div>
       </div>
       <ul class="nav flex-column">

@@ -99,7 +99,26 @@ $poid = $_GET['poid'];
             <textarea class='form-control' id='postcontent' name='postcontent' rows='15'>" . $row_post["content"] . "</textarea><br><br>
         </div>
         <button type='submit' class='btn btn-primary w-100'>Edit</button>
-    </form>";
+    </form>
+    <br>
+    <button type='button' class='btn btn-danger w-100' data-bs-toggle='modal' data-bs-target='#delete" . $row_post["poid"] . "'>Delete</button>";
+
+    echo "<div class='modal' id='delete" . $row_post["poid"] . "' tabindex='-1' role='dialog'>
+            <div class='modal-dialog' role='document'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h5 class='modal-title'>Post Löschen?</h5>
+                    </div>
+                    <div class='modal-body'>
+                        <p>Bist du sicher, dass du diesen Post endgültig löschen möchtest?</p>
+                    </div>
+                    <div class='modal-footer'>
+                        <a href='deletepost.php?poid=" . $row_post["poid"] . "&topid=" .  $row_post["to_pid"] . "' class='btn btn-danger'>Delete</a>
+                        <a href='editpost_page.php?poid=" . $row_post["poid"] . "' class='btn btn-secondary'>Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>";
  }
  } 
  else {
