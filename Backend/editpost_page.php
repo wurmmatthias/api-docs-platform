@@ -9,7 +9,7 @@ $poid = $_GET['poid'];
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dokumentation App - Admin</title>
+    <title>Documentation App - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
       body {
@@ -71,7 +71,7 @@ $poid = $_GET['poid'];
             <a class="nav-link active" aria-current="page" href="admin_main.php">Styling</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">User Account</a>
+            <a class="nav-link active" aria-current="page" href="useraccount_page.php">User Account</a>
           </li>
         </ul>
       </div>
@@ -104,8 +104,8 @@ $poid = $_GET['poid'];
             <input type='text' id='pid' name='pid' value='".$row_post["to_pid"] ."' hidden>
             <input type='text' id='poid' name='poid' value='".$row_post["poid"] ."' hidden>
             <input type='text' id='author' name='author' value='". $current_user ."' hidden>
-            <input type='text' class='form-control' id='postname' name='postname' value='" . $row_post["name"] . "'><br>
-            <textarea class='form-control' id='postcontent' name='postcontent' rows='15'>" . $row_post["content"] . "</textarea><br><br>
+            <input type='text' class='form-control' id='postname' name='postname' placeholder='Post Title' value='" . $row_post["name"] . "'><br>
+            <textarea class='form-control' id='postcontent' name='postcontent' placeholder='Post Content' rows='15'>" . $row_post["content"] . "</textarea><br><br>
         </div>
         <button type='submit' class='btn btn-primary w-100'>Edit</button>
     </form>
@@ -116,10 +116,10 @@ $poid = $_GET['poid'];
             <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
                     <div class='modal-header'>
-                        <h5 class='modal-title'>Post Löschen?</h5>
+                        <h5 class='modal-title'>Delete Post?</h5>
                     </div>
                     <div class='modal-body'>
-                        <p>Bist du sicher, dass du diesen Post endgültig löschen möchtest?</p>
+                        <p>Are you sure that you want to delete your Post?</p>
                     </div>
                     <div class='modal-footer'>
                         <a href='deletepost.php?poid=" . $row_post["poid"] . "&topid=" .  $row_post["to_pid"] . "' class='btn btn-danger'>Delete</a>
@@ -131,7 +131,7 @@ $poid = $_GET['poid'];
  }
  } 
  else {
-     echo "Diese Dokumentation ist leider leer....";
+     echo "This Documentation is empty...";
  }
 
  mysqli_close($conn);
@@ -146,7 +146,7 @@ $poid = $_GET['poid'];
 
   <!-- Footer -->
   <footer class="footer">
-    <p><b>&copy; 2025. Alle Rechte vorbehalten.</b></p>
+    <p><b>&copy; 2025. All rights reserved.</b></p>
   </footer>
 
 

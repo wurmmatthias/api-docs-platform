@@ -21,7 +21,7 @@ else {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dokumentation App - Admin</title>
+    <title>Documentation App - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
       body {
@@ -111,7 +111,7 @@ else {
  while($row_user = mysqli_fetch_assoc($result_userinfo)) {
     
     echo "
-    <h1>Edit your profile</h1>
+    <h1>Edit your Profile</h1>
     <br>
     <form action='edituser.php' method='POST'>
         <div class='form-group'>
@@ -140,12 +140,12 @@ else {
             <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
                    <div class='modal-header'>
-                        <h5 class='modal-title'>User löschen?</h5>
+                        <h5 class='modal-title'>Delete User?</h5>
                     </div>
                     <div class='modal-body'>
                         <form action='deleteuser.php' method='POST'>
                           <div class='form-group'>
-                            <a>Bist du dir sicher, dass du deinen Account endgültig löschen willst?</a><br><br>
+                            <a>Are you sure that you want to delete your Account?</a><br><br>
                             <input type='text' id='uid' name='uid' value='" . $row_user["uid"] . "' hidden>
                             <input type='password' class='form-control' id='password' name='password' placeholder='Confirm with Password'>";
                             if ($msg == 4) {echo "<p class='text-danger'>Password was wrong. User not deleted!</p>";}
@@ -179,7 +179,7 @@ else {
 
   <!-- Footer -->
   <footer class="footer">
-    <p><b>&copy; 2025. Alle Rechte vorbehalten.</b></p>
+    <p><b>&copy; 2025. All rights reserved.</b></p>
   </footer>
 
 

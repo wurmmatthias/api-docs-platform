@@ -16,7 +16,7 @@ else {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dokumentation App - Admin</title>
+    <title>Documentation App - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -101,7 +101,7 @@ else {
     <div class="sidebar" id="sidebar">
       <div class='row'>
           <div class='col-8'>
-            <button type='button' class='btn shadow-none'><h5>Alle Projekte</h5></button>
+            <button type='button' class='btn shadow-none'><h5>All Projects</h5></button>
           </div>
           <div class='col-2'>
           </div>
@@ -164,15 +164,15 @@ echo "<div class='modal' id='addproject' tabindex='-1' role='dialog'>
             <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
                     <div class='modal-header'>
-                        <h5 class='modal-title'>Projektnamen ändern</h5>
+                        <h5 class='modal-title'>Change Project name</h5>
                     </div>
                     <div class='modal-body'>
                         <form action='editproject.php' method='GET'>
                           <div class='form-group'>
                             <input type='text' id='pid' name='pid' value='".$row_project["pid"] ."' hidden>
                             <input type='text' id='author' name='author' value='". $current_user ."' hidden>
-                            <input type='text' class='form-control' id='projectname' name='projectname' value='" . $row_project["name"] . "'>
-                            <textarea class='form-control' id='projectdescription' name='projectdescription' rows='15' placeholder='Projektbeschreibung'>" . $row_project["description"] . "</textarea><br><br>
+                            <input type='text' class='form-control' id='projectname' name='projectname' placeholder='Project name' value='" . $row_project["name"] . "'>
+                            <textarea class='form-control' id='projectdescription' name='projectdescription' rows='15' placeholder='Project description'>" . $row_project["description"] . "</textarea><br><br>
                           </div>
                     </div>
                     <div class='modal-footer'>
@@ -188,10 +188,10 @@ echo "<div class='modal' id='addproject' tabindex='-1' role='dialog'>
             <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
                     <div class='modal-header'>
-                        <h5 class='modal-title'>Projekt Löschen?</h5>
+                        <h5 class='modal-title'>Delete Project?</h5>
                     </div>
                     <div class='modal-body'>
-                        <p>Bist du sicher, dass du dieses Projekt endgültig löschen möchtest?</p>
+                        <p>Are you sure that you want do delete your Project?</p>
                     </div>
                     <div class='modal-footer'>
                         <a href='deleteproject.php?pid=" . $row_project["pid"] . "' class='btn btn-danger'>Delete</a>
@@ -249,7 +249,7 @@ else {
     }
     } 
     else {
-        echo "Diese Dokumentation ist leider leer....";
+        echo "This Documentation is empty...";
     }
 
     mysqli_close($conn);
@@ -269,7 +269,7 @@ else {
 
   <!-- Footer -->
   <footer class="footer">
-    <p><b>&copy; 2025. Alle Rechte vorbehalten.</b></p>
+    <p><b>&copy; 2025. All rights reserved.</b></p>
   </footer>
 
   <script>
