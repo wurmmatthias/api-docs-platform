@@ -4,13 +4,14 @@ include "connect.php";
 $pid = $_GET["pid"];
 $name = $_GET["projectname"];
 $description = $_GET["projectdescription"];
+$author = $_GET["author"];;
 
-$edit = "UPDATE projekte SET name = '$name', description = '$description' WHERE pid = '$pid'";
+$edit = "UPDATE projekte SET name = '$name', description = '$description', author = '$author' WHERE pid = '$pid'";
 
 if (mysqli_query($conn, $edit)) {
-    echo "Record updated successfully";
+    echo "Project updated successfully";
   } else {
-    echo "Error updating record: " . mysqli_error($conn);
+    echo "Error updating project: " . mysqli_error($conn);
   }
    
 

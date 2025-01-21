@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include "connect.php";
-$poid = $_GET['poid'];
+$topid = $_GET['topid'];
 ?>
 
 <!doctype html>
@@ -82,31 +82,16 @@ $poid = $_GET['poid'];
 
 
 <?php 
- $sql_postinfo = "SELECT * FROM posts WHERE poid = " . $poid . "";
- $result_postsinfo = mysqli_query($conn, $sql_postinfo);
-
- if (mysqli_num_rows($result_postsinfo) > 0) {
- // output data of each row
- while($row_post = mysqli_fetch_assoc($result_postsinfo)) {
-    
     echo "
-    <form action='editpost.php' method='POST'>
+    <form action='addpost.php' method='POST'>
         <div class='form-group'>
-            <input type='text' id='pid' name='pid' value='".$row_post["to_pid"] ."' hidden>
-            <input type='text' id='poid' name='poid' value='".$row_post["poid"] ."' hidden>
             <input type='text' id='author' name='author' value='". $current_user ."' hidden>
-            <input type='text' class='form-control' id='postname' name='postname' value='" . $row_post["name"] . "'><br>
-            <textarea class='form-control' id='postcontent' name='postcontent' rows='15'>" . $row_post["content"] . "</textarea><br><br>
+            <input type='text' id='topid' name='topid' value='" . $topid ."' hidden>
+            <input type='text' class='form-control' id='postname' name='postname' placeholder = 'Post Title'><br>
+            <textarea class='form-control' id='postcontent' name='postcontent' rows='15' placeholder = 'Post Content goes here'></textarea><br><br>
         </div>
-        <button type='submit' class='btn btn-primary w-100'>Edit</button>
+        <button type='submit' class='btn btn-primary w-100'>Add</button>
     </form>";
- }
- } 
- else {
-     echo "Diese Dokumentation ist leider leer....";
- }
-
- mysqli_close($conn);
 ?>
 
 

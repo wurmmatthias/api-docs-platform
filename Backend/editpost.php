@@ -5,8 +5,9 @@ $poid = $_POST["poid"];
 $pid = $_POST["pid"];
 $name = $_POST["postname"];
 $content = $_POST["postcontent"];
+$author = $_POST["author"];
 
-$edit = "UPDATE posts SET name = '$name', content = '$content' WHERE poid = '$poid'";
+$edit = "UPDATE posts SET name = '$name', content = '$content', author = '$author' WHERE poid = '$poid'";
 
 if (mysqli_query($conn, $edit)) {
     echo "Record updated successfully";

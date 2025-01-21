@@ -19,7 +19,7 @@ if (isset($_POST['username'])) {
             $hashed_password = $row["password"];
 
             if(password_verify($passwort_input, $hashed_password)) {
-                $_SESSION['use'] = $user_input;
+                $_SESSION['user'] = $user_input;
                 echo '<script type="text/javascript"> window.open("http://localhost/API-DOCS-PLATFORM/Backend/admin_main.php","_self");</script>';
                 echo "Logged In!";
             } else {

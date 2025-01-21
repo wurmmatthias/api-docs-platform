@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include "connect.php";
 if (isset($_GET['project'])) {
     $pid = $_GET['project'];
@@ -9,12 +10,13 @@ else {
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dokumentation App - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
       body {
         display: flex;
@@ -30,6 +32,9 @@ else {
         background-color: #f8f9fa;
         padding: 20px;
         transition: transform 0.3s ease;
+      }
+      .navbar.right {
+        float: right;
       }
       .sidebar.collapsed {
         transform: translateX(-100%);
@@ -50,10 +55,20 @@ else {
   </head>
   <body>
 
+  <?php
+  if(!isset($_SESSION['user']))
+  {
+      header("Location: login_page.php");  
+  }
+
+  $current_user = $_SESSION['user'];
+  ?>
+
+
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color:rgb(54, 204, 117);">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><b>Admin Area</b></a>
+      <a class="navbar-brand" href="admin_main.php"><b>Admin Area</b></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -74,6 +89,9 @@ else {
           </li>
         </ul>
       </div>
+      <nav class="navbar-right">
+        <a href='logout.php' style="font-size:26px" class='fa fa-sign-out btn shadow-none'></a>
+      </nav>
     </div>
   </nav>
 
@@ -106,6 +124,7 @@ echo "<div class='modal' id='addproject' tabindex='-1' role='dialog'>
         <div class='modal-body'>
             <form action='addproject.php' method='POST'>
               <div class='form-group'>
+                <input type='text' id='author' name='author' value='". $current_user ."' hidden>
                 <input type='text' class='form-control' id='projectname' name='projectname' placeholder='Projektname'>
                 <br>
                  <textarea class='form-control' id='projectdescription' name='projectdescription' rows='15' placeholder='Projektbeschreibung'></textarea><br><br>
@@ -153,6 +172,7 @@ echo "<div class='modal' id='addproject' tabindex='-1' role='dialog'>
                         <form action='editproject.php' method='GET'>
                           <div class='form-group'>
                             <input type='text' id='pid' name='pid' value='".$row_project["pid"] ."' hidden>
+                            <input type='text' id='author' name='author' value='". $current_user ."' hidden>
                             <input type='text' class='form-control' id='projectname' name='projectname' value='" . $row_project["name"] . "'>
                             <textarea class='form-control' id='projectdescription' name='projectdescription' rows='15' placeholder='Projektbeschreibung'>" . $row_project["description"] . "</textarea><br><br>
                           </div>
@@ -215,13 +235,17 @@ else {
     $projekt = mysqli_fetch_assoc($result_projekt);
 
     echo "<h1>" . $projekt["name"] ."</h1>";
+    echo "<p class='text-secondary'>by ".  $projekt["author"]  ."</p>";
     echo "<h5>" . $projekt["description"] ."</h1><br>";
+    echo "<a href='addpost_page.php?topid=" . $pid . "' class='btn btn-success'>Add Post</a>";
+    echo "<br><br><br>";
 
     if (mysqli_num_rows($result_postsinfo) > 0) {
     // output data of each row
     while($row_post = mysqli_fetch_assoc($result_postsinfo)) {
        
-        echo "<h2><a href='editpost_page.php?poid=" . $row_post["poid"] . "'>".  $row_post["name"]  ."</a></h2><br>";
+        echo "<h2><a href='editpost_page.php?poid=" . $row_post["poid"] . "'>".  $row_post["name"]  ."</a></h2>";
+        echo "<p class='text-secondary'>by ".  $row_post["author"]  ."</p>";
         echo $row_post["content"];
         echo "<br><br>";
     }
