@@ -65,10 +65,19 @@ $topid = $_GET['topid'];
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">Posts bearbeiten</a>
+            <a class="nav-link active" aria-current="page" href="admin_main.php">Edit Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="admin_main.php">Styling</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="admin_main.php">User Account</a>
           </li>
         </ul>
       </div>
+      <nav class="navbar-right">
+        <a href='logout.php' style="font-size:26px" class='fa fa-sign-out btn shadow-none'></a>
+      </nav>
     </div>
   </nav>
 

@@ -2,7 +2,7 @@
 session_start();
 include 'connect.php';
  
-if(isset($_SESSION['use'])) {
+if(isset($_SESSION['user'])) {
     header("http://localhost/API-DOCS-PLATFORM/Backend/admin_main.php"); 
 }
 

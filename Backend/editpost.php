@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "connect.php";
 
 $poid = $_POST["poid"];
