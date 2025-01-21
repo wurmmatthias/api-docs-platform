@@ -1,5 +1,6 @@
 <?php 
 include "../../Backend/connect.php";
+include "../locale/language_config.php";
 
 $projekt = $_GET["doku"];
 
@@ -16,7 +17,7 @@ $sql_postinfo = "SELECT * FROM posts WHERE to_pid = " . $projekt . "";
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php echo $row["name"]; ?> - Dokumentation App</title>
+    <title><?php echo $row["name"]; ?> - <?php echo __("title", $language); ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
       body {
@@ -86,7 +87,7 @@ $sql_postinfo = "SELECT * FROM posts WHERE to_pid = " . $projekt . "";
   <!-- <button class="btn btn-primary toggle-sidebar-btn" onclick="toggleSidebar()">Toggle Sidebar</button> -->
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
-      <h5>Inhaltsverzeichnis</h5>
+      <h5><?php echo __("toc", $language); ?></h5>
       <ul class="nav flex-column">
         <?php 
         
@@ -147,8 +148,8 @@ mysqli_close($conn);
 
   <!-- Footer -->
   <footer class="footer">
-    <p><b>Dokumentation von <?php echo $row["author"]; ?></b></p>
-    <p><b>&copy; 2025. Alle Rechte vorbehalten.</b></p>
+    <p><b><?php echo __("docs of", $language); ?> <?php echo $row["author"]; ?></b></p>
+    <p><b><?php echo __("copyright", $language); ?></b></p>
   </footer>
 
   <script>
