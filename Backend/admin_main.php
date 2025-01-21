@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include "connect.php";
-include "./locale/language_config.php";
+include "../Frontend/locale/language_config.php";
 
 if (isset($_GET['project'])) {
     $pid = $_GET['project'];
@@ -101,7 +101,7 @@ else {
     <div class="sidebar" id="sidebar">
       <div class='row'>
           <div class='col-8'>
-            <button type='button' class='btn shadow-none'><h5>All Projects</h5></button>
+            <button type='button' class='btn shadow-none'><?php echo "<h5>" .  __("all_projects", $language) . "</h5>";?></button>
           </div>
           <div class='col-2'>
           </div>
@@ -220,8 +220,8 @@ echo "<div class='modal' id='addproject' tabindex='-1' role='dialog'>
 <?php 
 
 if ($pid == "") {
-    echo "<h2>" .  __("project_edit_title", $language) . "</h2><br>";
-    echo "" . __("posts_description", $language) . "";
+    echo "<h2>" .  __("no_project_title", $language) . "</h2><br>";
+    echo "" . __("no_project_description", $language) . "";
     echo "<br><br>";
 }
 else {
@@ -235,7 +235,7 @@ else {
     echo "<h1>" . $projekt["name"] ."</h1>";
     echo "<p class='text-secondary'>by ".  $projekt["author"]  ."</p>";
     echo "<h5>" . $projekt["description"] ."</h1><br>";
-    echo "<a href='addpost_page.php?topid=" . $pid . "' class='btn btn-success'>Add Post</a>";
+    echo "<a href='addpost_page.php?topid=" . $pid . "' class='btn btn-success'>" . __("add_post", $language) . "</a>";
     echo "<br><br><br>";
 
     if (mysqli_num_rows($result_postsinfo) > 0) {
@@ -269,7 +269,7 @@ else {
 
   <!-- Footer -->
   <footer class="footer">
-    <p><b>&copy; 2025. All rights reserved.</b></p>
+    <p><b><?php echo __("copyright", $language); ?></b></p>
   </footer>
 
   <script>
