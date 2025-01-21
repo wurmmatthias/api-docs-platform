@@ -1,6 +1,8 @@
 <?php 
 session_start();
 include "connect.php";
+include "./locale/language_config.php";
+
 if (isset($_GET['project'])) {
     $pid = $_GET['project'];
 }
@@ -222,8 +224,8 @@ echo "<div class='modal' id='addproject' tabindex='-1' role='dialog'>
 <?php 
 
 if ($pid == "") {
-    echo "<h2>Bitte wähle ein Projekt aus der linken Spalte!</h2><br>";
-    echo "Hier kannst du die Posts bearbeiten. Bitte wähle zunächst das Projekt, in dem sich der Post befindet.";
+    echo "<h2>" .  __("project_edit_title", $language) . "</h2><br>";
+    echo "" . __("posts_description", $language) . "";
     echo "<br><br>";
 }
 else {
