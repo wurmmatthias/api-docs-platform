@@ -10,12 +10,6 @@ else {
 }
 ?>
 
-<?php if ($msg == 4 || $msg == 5 || $msg == 6): ?>
-    <script>
-      var modal = new bootstrap.Modal(document.getElementById('delete'));
-      modal.show();
-    </script>
-  <?php endif; ?>
 
 <!doctype html>
 <html lang="de">
@@ -127,8 +121,9 @@ else {
       <div class='form-group'>
         <input type='text' id='uid' name='uid' value='".$row_user["uid"] ."' hidden>
         <input type='password' class='form-control' id='oldpassword' name='oldpassword' placeholder='".  __("old_password", $language) ."'><br>
-        <input type='password' class='form-control' id='newpassword1' name='newpassword1' placeholder='".  __("new_password", $language) ."'><br>
-        <input type='password' class='form-control' id='newpassword2' name='newpassword2' placeholder='".  __("retype_new_password", $language) ."'><br>
+        <input type='password' class='form-control' id='newpassword1' name='newpassword1' placeholder='" .  __('new_password', $language) . "' required pattern='(?=.*\d)(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}' title='Das Passwort muss mindestens 8 Zeichen lang sein, mindestens eine Zahl, einen Großbuchstaben und ein Sonderzeichen enthalten.'>
+        <input type='password' class='form-control' id='newpassword2' name='newpassword2' placeholder='".  __("retype_new_password", $language) ."'>
+        <small class='text-muted'>Das Passwort muss mindestens 8 Zeichen lang sein, mindestens eine Zahl, einen Großbuchstaben und ein Sonderzeichen enthalten.</small><br><br>
       </div>
         <button type='submit' class='btn btn-primary w-100'>".  __("change_password", $language) ."</button><br><br>
     </form>";
@@ -191,5 +186,13 @@ else {
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <script>
+    <?php if ($msg == 4 || $msg == 5 || $msg == 6): ?>
+      var modal = new bootstrap.Modal(document.getElementById('delete'));
+      modal.show();
+    <?php endif; ?>
+  </script>
+
   </body>
 </html>

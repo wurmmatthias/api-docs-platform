@@ -23,6 +23,7 @@
       }
     </style>
   </head>
+
 <?php
 if (isset($_GET['msg'])) {
   $msg = $_GET['msg'];
@@ -30,7 +31,6 @@ if (isset($_GET['msg'])) {
 else {
   $msg = 0;
 }
-
 ?>
 
   <body>
@@ -57,7 +57,15 @@ else {
         </div>
         <div class="mb-3">
           <label for="passwort" class="form-label">Passwort</label>
-          <input type="password" class="form-control" id="passwort" name="passwort" required>
+            <input 
+              type="password" 
+              class="form-control" 
+              id="passwort" 
+              name="passwort" 
+              required 
+              pattern="(?=.*\d)(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" 
+              title="Das Passwort muss mindestens 8 Zeichen lang sein, mindestens eine Zahl, einen Großbuchstaben und ein Sonderzeichen enthalten.">
+              <small class="text-muted">Das Passwort muss mindestens 8 Zeichen lang sein, mindestens eine Zahl, einen Großbuchstaben und ein Sonderzeichen enthalten.</small>
         </div>
         <button type="submit" class="btn btn-success w-100">Registrieren</button>
       </form>
