@@ -6,5 +6,8 @@
     "no_project_title": "Projekt wählen zum bearbeiten",
     "no_project_description": "Wähle ein Projekt aus der linken Spalte um Posts zu erstellen oder zu bearbeiten.",
     "all_projects": "Alle Projekte",
-    "add_post": "Pfosten hinzufügen"
+    "add_post": "Pfosten hinzufügen",
+    "custom_css_title": "Benutzerdefiniertes Stylesheet anlegen / editieren",
+    "custom_css_desc": "Hier können Sie bestimmte Elemente des Frontends mit Hilfe von CSS manipulieren oder verändern.",
+    "custom_css_sidebar_title": "Aktionen"
 }

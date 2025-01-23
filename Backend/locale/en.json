@@ -1,4 +1,6 @@
 {
     "project_edit_title": "Please choose a project in the area on the left side of the screen!",
-    "posts_description": "Here you can edit the posts. Please first select the project in which the post is located."
+    "posts_description": "Here you can edit the posts. Please first select the project in which the post is located.",
+    "custom_css_title": "Custom CSS changes",
+    "custom_css_desc": "You can edit or control certain elements of your frontend design here."
 }

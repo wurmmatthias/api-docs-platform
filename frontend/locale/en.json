@@ -2,5 +2,8 @@
     "toc": "Table of Contents",
     "copyright": "&copy; 2025 - All rights reserved.",
     "docs of": "Documentation of",
-    "title": "Documentation App"
+    "title": "Documentation App",
+    "custom_css_title": "Custom CSS changes",
+    "custom_css_desc": "You can edit or control certain elements of your frontend design here.",
+    "custom_css_sidebar_title": "Actions"
 }
