@@ -23,6 +23,16 @@
       }
     </style>
   </head>
+
+<?php
+if (isset($_GET['msg'])) {
+  $msg = $_GET['msg'];
+}
+else {
+  $msg = 0;
+}
+?>
+
   <body>
     <div class="login-container">
       <h2 class="text-center mb-4"><b>Doku App</b> Registrierung</h2>
@@ -35,6 +45,7 @@
         <div class="mb-3">
           <label for="username" class="form-label">Benutzername</label>
           <input type="text" class="form-control" id="username" name="username" required>
+          <?php if ($msg == 1) {echo "<p class='text-danger'>Username already exists. Please choose a different one.</p>";} ?>
         </div>
         <div class="mb-3">
           <label for="firstname" class="form-label">Vorname</label>
@@ -46,7 +57,15 @@
         </div>
         <div class="mb-3">
           <label for="passwort" class="form-label">Passwort</label>
-          <input type="password" class="form-control" id="passwort" name="passwort" required>
+            <input 
+              type="password" 
+              class="form-control" 
+              id="passwort" 
+              name="passwort" 
+              required 
+              pattern="(?=.*\d)(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" 
+              title="Das Passwort muss mindestens 8 Zeichen lang sein, mindestens eine Zahl, einen Großbuchstaben und ein Sonderzeichen enthalten.">
+              <small class="text-muted">Das Passwort muss mindestens 8 Zeichen lang sein, mindestens eine Zahl, einen Großbuchstaben und ein Sonderzeichen enthalten.</small>
         </div>
         <button type="submit" class="btn btn-success w-100">Registrieren</button>
       </form>

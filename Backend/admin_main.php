@@ -70,20 +70,20 @@ else {
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color:rgb(54, 204, 117);">
     <div class="container-fluid">
-      <a class="navbar-brand" href="admin_main.php"><b>Admin Area</b></a>
+      <a class="navbar-brand" href="admin_main.php"><b><?php echo __("admin_heading", $language); ?></b></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">Edit Projects</a>
+            <a class="nav-link active" aria-current="page" href="admin_main.php"><?php echo __("edit_projects_heading", $language); ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">Styling</a>
+            <a class="nav-link active" aria-current="page" href="admin_main.php"><?php echo __("styling_heading", $language); ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="useraccount_page.php">User Account</a>
+            <a class="nav-link active" aria-current="page" href="useraccount_page.php"><?php echo __("user_account_heading", $language); ?></a>
           </li>
         </ul>
       </div>
@@ -117,21 +117,21 @@ echo "<div class='modal' id='addproject' tabindex='-1' role='dialog'>
   <div class='modal-dialog' role='document'>
     <div class='modal-content'>
         <div class='modal-header'>
-            <h5 class='modal-title'>Projekt hinzufügen</h5>
+            <h5 class='modal-title'>".  __("add_project?", $language) ."</h5>
         </div>
         <div class='modal-body'>
             <form action='addproject.php' method='POST'>
               <div class='form-group'>
                 <input type='text' id='author' name='author' value='". $current_user ."' hidden>
-                <input type='text' class='form-control' id='projectname' name='projectname' placeholder='Projektname'>
+                <input type='text' class='form-control' id='projectname' name='projectname' placeholder=".  __("projectname", $language) .">
                 <br>
-                 <textarea class='form-control' id='projectdescription' name='projectdescription' rows='15' placeholder='Projektbeschreibung'></textarea><br><br>
+                 <textarea class='form-control' id='projectdescription' name='projectdescription' rows='15' placeholder=".  __("projectdescription", $language) ."></textarea><br><br>
               </div>
         </div>
         <div class='modal-footer'>
-            <button type='submit' class='btn btn-primary'>Submit</button>
+            <button type='submit' class='btn btn-primary'>".  __("submit", $language) ."</button>
             </form>
-            <a href='admin_main.php' class='btn btn-secondary'>Close</a>
+            <a href='admin_main.php' class='btn btn-secondary'>".  __("close", $language) ."</a>
         </div>
     </div>
   </div>
@@ -164,21 +164,21 @@ echo "<div class='modal' id='addproject' tabindex='-1' role='dialog'>
             <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
                     <div class='modal-header'>
-                        <h5 class='modal-title'>Change Project name</h5>
+                        <h5 class='modal-title'>".  __("edit_project_name", $language) ."</h5>
                     </div>
                     <div class='modal-body'>
                         <form action='editproject.php' method='GET'>
                           <div class='form-group'>
                             <input type='text' id='pid' name='pid' value='".$row_project["pid"] ."' hidden>
                             <input type='text' id='author' name='author' value='". $current_user ."' hidden>
-                            <input type='text' class='form-control' id='projectname' name='projectname' placeholder='Project name' value='" . $row_project["name"] . "'>
-                            <textarea class='form-control' id='projectdescription' name='projectdescription' rows='15' placeholder='Project description'>" . $row_project["description"] . "</textarea><br><br>
+                            <input type='text' class='form-control' id='projectname' name='projectname' placeholder='".  __("projectname", $language) ."' value='" . $row_project["name"] . "'>
+                            <textarea class='form-control' id='projectdescription' name='projectdescription' rows='15' placeholder='".  __("projectdescription", $language) ."'>" . $row_project["description"] . "</textarea><br><br>
                           </div>
                     </div>
                     <div class='modal-footer'>
-                        <button type='submit' class='btn btn-primary'>Submit</button>
+                        <button type='submit' class='btn btn-primary'>".  __("submit", $language) ."</button>
                         </form>
-                        <a href='admin_main.php' class='btn btn-secondary'>Close</a>
+                        <a href='admin_main.php' class='btn btn-secondary'>".  __("close", $language) ."</a>
                     </div>
                 </div>
             </div>
@@ -188,14 +188,14 @@ echo "<div class='modal' id='addproject' tabindex='-1' role='dialog'>
             <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
                     <div class='modal-header'>
-                        <h5 class='modal-title'>Delete Project?</h5>
+                        <h5 class='modal-title'>".  __("delete_project?", $language) ."</h5>
                     </div>
                     <div class='modal-body'>
-                        <p>Are you sure that you want do delete your Project?</p>
+                        <p>".  __("delete_project_description", $language) ."</p>
                     </div>
                     <div class='modal-footer'>
-                        <a href='deleteproject.php?pid=" . $row_project["pid"] . "' class='btn btn-danger'>Delete</a>
-                        <a href='admin_main.php' class='btn btn-secondary'>Close</a>
+                        <a href='deleteproject.php?pid=" . $row_project["pid"] . "' class='btn btn-danger'>".  __("delete", $language) ."</a>
+                        <a href='admin_main.php' class='btn btn-secondary'>".  __("close", $language) ."</a>
                     </div>
                 </div>
             </div>
@@ -233,7 +233,7 @@ else {
     $projekt = mysqli_fetch_assoc($result_projekt);
 
     echo "<h1>" . $projekt["name"] ."</h1>";
-    echo "<p class='text-secondary'>by ".  $projekt["author"]  ."</p>";
+    echo "<p class='text-secondary'>".  __("docs of", $language) ." ".  $projekt["author"]  ."</p>";
     echo "<h5>" . $projekt["description"] ."</h1><br>";
     echo "<a href='addpost_page.php?topid=" . $pid . "' class='btn btn-success'>" . __("add_post", $language) . "</a>";
     echo "<br><br><br>";
@@ -243,13 +243,13 @@ else {
     while($row_post = mysqli_fetch_assoc($result_postsinfo)) {
        
         echo "<h2><a href='editpost_page.php?poid=" . $row_post["poid"] . "'>".  $row_post["name"]  ."</a></h2>";
-        echo "<p class='text-secondary'>by ".  $row_post["author"]  ."</p>";
+        echo "<p class='text-secondary'>".  __("docs of", $language) ." ".  $row_post["author"]  ."</p>";
         echo $row_post["content"];
         echo "<br><br>";
     }
     } 
     else {
-        echo "This Documentation is empty...";
+        echo __("documentation_empty", $language);
     }
 
     mysqli_close($conn);
