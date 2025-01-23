@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include "connect.php";
+include "../Frontend/locale/language_config.php";
 $poid = $_GET['poid'];
 ?>
 
@@ -55,23 +56,23 @@ $poid = $_GET['poid'];
   $current_user = $_SESSION['user'];
   ?>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color:rgb(54, 204, 117);">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color:rgb(54, 204, 117);">
     <div class="container-fluid">
-      <a class="navbar-brand" href="admin_main.php"><b>Admin Area</b></a>
+      <a class="navbar-brand" href="admin_main.php"><b><?php echo __("admin_heading", $language); ?></b></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">Edit Projects</a>
+            <a class="nav-link active" aria-current="page" href="admin_main.php"><?php echo __("edit_projects_heading", $language); ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">Styling</a>
+            <a class="nav-link active" aria-current="page" href="admin_main.php"><?php echo __("styling_heading", $language); ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="useraccount_page.php">User Account</a>
+            <a class="nav-link active" aria-current="page" href="useraccount_page.php"><?php echo __("user_account_heading", $language); ?></a>
           </li>
         </ul>
       </div>
@@ -104,26 +105,26 @@ $poid = $_GET['poid'];
             <input type='text' id='pid' name='pid' value='".$row_post["to_pid"] ."' hidden>
             <input type='text' id='poid' name='poid' value='".$row_post["poid"] ."' hidden>
             <input type='text' id='author' name='author' value='". $current_user ."' hidden>
-            <input type='text' class='form-control' id='postname' name='postname' placeholder='Post Title' value='" . $row_post["name"] . "'><br>
-            <textarea class='form-control' id='postcontent' name='postcontent' placeholder='Post Content' rows='15'>" . $row_post["content"] . "</textarea><br><br>
+            <input type='text' class='form-control' id='postname' name='postname' placeholder='".  __("postname", $language) ."' value='" . $row_post["name"] . "'><br>
+            <textarea class='form-control' id='postcontent' name='postcontent' placeholder='".  __("postcontent", $language) ."' rows='15'>" . $row_post["content"] . "</textarea><br><br>
         </div>
-        <button type='submit' class='btn btn-primary w-100'>Edit</button>
+        <button type='submit' class='btn btn-primary w-100'>".  __("edit", $language) ."</button>
     </form>
     <br>
-    <button type='button' class='btn btn-danger w-100' data-bs-toggle='modal' data-bs-target='#delete" . $row_post["poid"] . "'>Delete</button>";
+    <button type='button' class='btn btn-danger w-100' data-bs-toggle='modal' data-bs-target='#delete" . $row_post["poid"] . "'>".  __("delete", $language) ."</button>";
 
     echo "<div class='modal' id='delete" . $row_post["poid"] . "' tabindex='-1' role='dialog'>
             <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
                     <div class='modal-header'>
-                        <h5 class='modal-title'>Delete Post?</h5>
+                        <h5 class='modal-title'>".  __("delete_post?", $language) ."</h5>
                     </div>
                     <div class='modal-body'>
-                        <p>Are you sure that you want to delete your Post?</p>
+                        <p>".  __("delete_post_description", $language) ."</p>
                     </div>
                     <div class='modal-footer'>
-                        <a href='deletepost.php?poid=" . $row_post["poid"] . "&topid=" .  $row_post["to_pid"] . "' class='btn btn-danger'>Delete</a>
-                        <a href='editpost_page.php?poid=" . $row_post["poid"] . "' class='btn btn-secondary'>Close</a>
+                        <a href='deletepost.php?poid=" . $row_post["poid"] . "&topid=" .  $row_post["to_pid"] . "' class='btn btn-danger'>".  __("delete", $language) ."</a>
+                        <a href='editpost_page.php?poid=" . $row_post["poid"] . "' class='btn btn-secondary'>".  __("close", $language) ."</a>
                     </div>
                 </div>
             </div>
@@ -131,7 +132,7 @@ $poid = $_GET['poid'];
  }
  } 
  else {
-     echo "This Documentation is empty...";
+    echo __("documentation_empty", $language);
  }
 
  mysqli_close($conn);
@@ -146,9 +147,15 @@ $poid = $_GET['poid'];
 
   <!-- Footer -->
   <footer class="footer">
-    <p><b>&copy; 2025. All rights reserved.</b></p>
+    <p><b><?php echo __("copyright", $language); ?></b></p>
   </footer>
 
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('collapsed');
+    }
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>

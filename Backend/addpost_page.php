@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include "connect.php";
+include "../Frontend/locale/language_config.php";
 $topid = $_GET['topid'];
 ?>
 
@@ -55,23 +56,23 @@ $topid = $_GET['topid'];
   $current_user = $_SESSION['user'];
   ?>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color:rgb(54, 204, 117);">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color:rgb(54, 204, 117);">
     <div class="container-fluid">
-      <a class="navbar-brand" href="admin_main.php"><b>Admin Area</b></a>
+      <a class="navbar-brand" href="admin_main.php"><b><?php echo __("admin_heading", $language); ?></b></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">Edit Projects</a>
+            <a class="nav-link active" aria-current="page" href="admin_main.php"><?php echo __("edit_projects_heading", $language); ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">Styling</a>
+            <a class="nav-link active" aria-current="page" href="admin_main.php"><?php echo __("styling_heading", $language); ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">User Account</a>
+            <a class="nav-link active" aria-current="page" href="useraccount_page.php"><?php echo __("user_account_heading", $language); ?></a>
           </li>
         </ul>
       </div>
@@ -96,10 +97,10 @@ $topid = $_GET['topid'];
         <div class='form-group'>
             <input type='text' id='author' name='author' value='". $current_user ."' hidden>
             <input type='text' id='topid' name='topid' value='" . $topid ."' hidden>
-            <input type='text' class='form-control' id='postname' name='postname' placeholder = 'Post Title'><br>
-            <textarea class='form-control' id='postcontent' name='postcontent' rows='15' placeholder = 'Post Content goes here'></textarea><br><br>
+            <input type='text' class='form-control' id='postname' name='postname' placeholder = '".  __("postname", $language) ."'><br>
+            <textarea class='form-control' id='postcontent' name='postcontent' rows='15' placeholder = '".  __("postcontent", $language) ."'></textarea><br><br>
         </div>
-        <button type='submit' class='btn btn-primary w-100'>Add</button>
+        <button type='submit' class='btn btn-primary w-100'>".  __("submit", $language) ."</button>
     </form>";
 ?>
 
@@ -112,9 +113,15 @@ $topid = $_GET['topid'];
 
   <!-- Footer -->
   <footer class="footer">
-    <p><b>&copy; 2025. Alle Rechte vorbehalten.</b></p>
+    <p><b><?php echo __("copyright", $language); ?></b></p>
   </footer>
 
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('collapsed');
+    }
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>

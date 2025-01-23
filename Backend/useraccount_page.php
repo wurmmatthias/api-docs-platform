@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include "connect.php";
+include "../Frontend/locale/language_config.php";
 if (isset($_GET["msg"])) {
   $msg = $_GET["msg"];
 }
@@ -67,23 +68,23 @@ else {
   $current_user = $_SESSION['user'];
   ?>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color:rgb(54, 204, 117);">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color:rgb(54, 204, 117);">
     <div class="container-fluid">
-      <a class="navbar-brand" href="admin_main.php"><b>Admin Area</b></a>
+      <a class="navbar-brand" href="admin_main.php"><b><?php echo __("admin_heading", $language); ?></b></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">Edit Projects</a>
+            <a class="nav-link active" aria-current="page" href="admin_main.php"><?php echo __("edit_projects_heading", $language); ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">Styling</a>
+            <a class="nav-link active" aria-current="page" href="admin_main.php"><?php echo __("styling_heading", $language); ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="useraccount_page.php">User Account</a>
+            <a class="nav-link active" aria-current="page" href="useraccount_page.php"><?php echo __("user_account_heading", $language); ?></a>
           </li>
         </ul>
       </div>
@@ -111,52 +112,52 @@ else {
  while($row_user = mysqli_fetch_assoc($result_userinfo)) {
     
     echo "
-    <h1>Edit your Profile</h1>
+    <h1>".  __("edit_profile_heading", $language) ."</h1>
     <br>
     <form action='edituser.php' method='POST'>
         <div class='form-group'>
             <input type='text' id='uid' name='uid' value='".$row_user["uid"] ."' hidden>
-            <input type='text' class='form-control' id='firstname' name='firstname' placeholder='Firstname' value='" . $row_user["firstname"] . "'><br>
-            <input type='text' class='form-control' id='lastname' name='lastname' placeholder='Lastname' value='" . $row_user["lastname"] . "'><br>
+            <input type='text' class='form-control' id='firstname' name='firstname' placeholder='".  __("firstname", $language) ."' value='" . $row_user["firstname"] . "'><br>
+            <input type='text' class='form-control' id='lastname' name='lastname' placeholder='".  __("lastname", $language) ."' value='" . $row_user["lastname"] . "'><br>
         </div>
-        <button type='submit' class='btn btn-primary w-100'>Edit</button><br><br><br><br>
+        <button type='submit' class='btn btn-primary w-100'>".  __("edit", $language) ."</button><br><br><br><br>
     </form>";
 
     echo "<form action='changepassword.php' method='POST'>
       <div class='form-group'>
         <input type='text' id='uid' name='uid' value='".$row_user["uid"] ."' hidden>
-        <input type='password' class='form-control' id='oldpassword' name='oldpassword' placeholder='Old Password'><br>
-        <input type='password' class='form-control' id='newpassword1' name='newpassword1' placeholder='New Password'><br>
-        <input type='password' class='form-control' id='newpassword2' name='newpassword2' placeholder='Retype new Password'><br>
+        <input type='password' class='form-control' id='oldpassword' name='oldpassword' placeholder='".  __("old_password", $language) ."'><br>
+        <input type='password' class='form-control' id='newpassword1' name='newpassword1' placeholder='".  __("new_password", $language) ."'><br>
+        <input type='password' class='form-control' id='newpassword2' name='newpassword2' placeholder='".  __("retype_new_password", $language) ."'><br>
       </div>
-        <button type='submit' class='btn btn-primary w-100'>Change Password</button><br><br>
+        <button type='submit' class='btn btn-primary w-100'>".  __("change_password", $language) ."</button><br><br>
     </form>";
     if ($msg == 2) {echo "<p class='text-danger'>Old Password was wrong. Password not changed!</p>";}
     else if ($msg == 1) {echo "<p class='text-danger'>New passwords dont match. Password not changed!</p>";}
     else if ($msg == 3) {echo "<p class='text-danger'>Error in Database. Password not changed!</p>";}
-    echo "<button type='button'  class='btn btn-danger w-100' data-bs-toggle='modal' data-bs-target='#delete'>Delete User</button>";
+    echo "<button type='button'  class='btn btn-danger w-100' data-bs-toggle='modal' data-bs-target='#delete'>".  __("delete_user", $language) ."</button>";
 
     echo "<div class='modal' id='delete' tabindex='-1' role='dialog'>
             <div class='modal-dialog' role='document'>
                 <div class='modal-content'>
                    <div class='modal-header'>
-                        <h5 class='modal-title'>Delete User?</h5>
+                        <h5 class='modal-title'>".  __("delete_user?", $language) ."</h5>
                     </div>
                     <div class='modal-body'>
                         <form action='deleteuser.php' method='POST'>
                           <div class='form-group'>
-                            <a>Are you sure that you want to delete your Account?</a><br><br>
+                            <a>".  __("delete_user_confirmation", $language) ."</a><br><br>
                             <input type='text' id='uid' name='uid' value='" . $row_user["uid"] . "' hidden>
-                            <input type='password' class='form-control' id='password' name='password' placeholder='Confirm with Password'>";
+                            <input type='password' class='form-control' id='password' name='password' placeholder='".  __("confirm_with_password", $language) ."'>";
                             if ($msg == 4) {echo "<p class='text-danger'>Password was wrong. User not deleted!</p>";}
                             else if ($msg == 5) {echo "<p class='text-danger'>Error in Database. User not deleted!</p>";}
                             else if ($msg == 6) {echo "<p class='text-danger'>Dont even try to...</p>";}
                           echo "</div>
                     </div>
                     <div class='modal-footer'>
-                        <button type='submit' class='btn btn-danger'>Delete</button>
+                        <button type='submit' class='btn btn-danger'>".  __("delete", $language) ."</button>
                         </form>
-                        <a href='useraccount_page.php' class='btn btn-secondary'>Close</a>
+                        <a href='useraccount_page.php' class='btn btn-secondary'>".  __("close", $language) ."</a>
                     </div>
                 </div>
             </div>
@@ -179,9 +180,15 @@ else {
 
   <!-- Footer -->
   <footer class="footer">
-    <p><b>&copy; 2025. All rights reserved.</b></p>
+    <p><b><?php echo __("copyright", $language); ?></b></p>
   </footer>
 
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('collapsed');
+    }
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>

@@ -23,6 +23,16 @@
       }
     </style>
   </head>
+<?php
+if (isset($_GET['msg'])) {
+  $msg = $_GET['msg'];
+}
+else {
+  $msg = 0;
+}
+
+?>
+
   <body>
     <div class="login-container">
       <h2 class="text-center mb-4"><b>Doku App</b> Registrierung</h2>
@@ -35,6 +45,7 @@
         <div class="mb-3">
           <label for="username" class="form-label">Benutzername</label>
           <input type="text" class="form-control" id="username" name="username" required>
+          <?php if ($msg == 1) {echo "<p class='text-danger'>Username already exists. Please choose a different one.</p>";} ?>
         </div>
         <div class="mb-3">
           <label for="firstname" class="form-label">Vorname</label>

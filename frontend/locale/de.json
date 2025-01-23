@@ -1,10 +1,48 @@
 {
+    
     "toc": "Inhaltsverzeichnis",
     "copyright": "&copy; 2025 - Alle Rechte vorbehalten.",
     "docs of": "Dokumentation von",
     "title": "Dokumentations Anwendung",
     "no_project_title": "Projekt wählen zum bearbeiten",
     "no_project_description": "Wähle ein Projekt aus der linken Spalte um Posts zu erstellen oder zu bearbeiten.",
+    "documentation_empty": "Dieses Projekt ist leider leer...",
+
+    "firstname": "Vorname",
+    "lastname": "Nachname",
+    "old_password": "Aktuelles Passwort",
+    "new_password": "Neues Passwort",
+    "retype_new_password": "Neues Passwort bestätigen",
+    "confirm_with_password": "Mit Passwort bestätigen",
+    "delete_user?": "Benutzer löschen?",
+    "delete_user_confirmation": "Bist du sicher, dass du deinen Account unwiederruflich löschen möchtest?",
+    
     "all_projects": "Alle Projekte",
-    "add_post": "Pfosten hinzufügen"
+    "projectname": "Projektname",
+    "edit_project_name": "Projektnamen ändern",
+    "projectdescription": "Projektbeschreibung",
+    "postname": "Postname",
+    "postcontent": "Hier ist Platz für den Inhalt deines Posts!",
+    "add_post": "Pfosten hinzufügen",
+    "add_post?": "Pfosten hinzufügen?",
+    "add_project": "Projekt hinzufügen",
+    "add_project?": "Projekt hinzufügen?",
+    "delete_project?": "Projekt löschen?",
+    "delete_post?": "Post löschen?",
+    "delete_project_description": "Bist du dir sicher, dass du das Projekt unwiederuflich löschen möchtest?",
+    "delete_post_description": "Bist du dir sicher, dass du deinen Post unwiederuflich löschen möchtest?",
+    
+    "admin_heading": "Admin Bereich",
+    "edit_projects_heading": "Projekte bearbeiten",
+    "styling_heading": "Optische Anpassung",
+    "user_account_heading": "Benutzerbereich",
+    "edit_profile_heading": "Profil bearbeiten",
+    
+    "submit": "Absenden",
+    "edit": "Bearbeiten",
+    "change_password": "Passwort ändern",
+    "close": "Schließen",
+    "delete": "Löschen",
+    "delete_user": "User löschen"
+    
 }
