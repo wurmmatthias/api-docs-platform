@@ -12,6 +12,12 @@ $poid = $_GET['poid'];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Documentation App - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
     <style>
       body {
         display: flex;
@@ -98,15 +104,18 @@ $poid = $_GET['poid'];
  if (mysqli_num_rows($result_postsinfo) > 0) {
  // output data of each row
  while($row_post = mysqli_fetch_assoc($result_postsinfo)) {
+  $content = $row_post["content"];
     
     echo "
-    <form action='editpost.php' method='POST'>
+    <form action='editpost.php' method='POST' onsubmit='return submitEditorContent()'>
         <div class='form-group'>
             <input type='text' id='pid' name='pid' value='".$row_post["to_pid"] ."' hidden>
             <input type='text' id='poid' name='poid' value='".$row_post["poid"] ."' hidden>
             <input type='text' id='author' name='author' value='". $current_user ."' hidden>
             <input type='text' class='form-control' id='postname' name='postname' placeholder='".  __("postname", $language) ."' value='" . $row_post["name"] . "'><br>
-            <textarea class='form-control' id='postcontent' name='postcontent' placeholder='".  __("postcontent", $language) ."' rows='15'>" . $row_post["content"] . "</textarea><br><br>
+            <input type='hidden' id='postcontent_hidden' name='postcontent'>
+            
+            <div id='editorjs'></div> <!-- Editor.js-Container -->
         </div>
         <button type='submit' class='btn btn-primary w-100'>".  __("edit", $language) ."</button>
     </form>
@@ -141,6 +150,7 @@ $poid = $_GET['poid'];
 
 
 
+
     </div>
 
   </div>
@@ -158,5 +168,64 @@ $poid = $_GET['poid'];
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script>
+  // JSON-Inhalt aus PHP in Editor.js laden
+  const initialContent = <?= json_encode($content); ?>;
+
+  const editor = new EditorJS({
+    holder: 'editorjs',
+    tools: {
+      header: {
+        class: Header,
+        inlineToolbar: ['bold', 'italic'], // Inline Optionen für Header
+        config: {
+          levels: [2, 3, 4], // Überschriften H2, H3, H4
+          defaultLevel: 3,
+        },
+      },
+      paragraph: {
+        class: Paragraph,
+        inlineToolbar: ['bold', 'italic', 'inlineCode'], // Inline Optionen für Text
+      },
+      inlineCode: InlineCode, // Inline-Code für Text
+      simpleImage: {
+        class: SimpleImage, // Bild hinzufügen (sehr simpel)
+        config: {
+          placeholder: 'Füge hier ein Bild hinzu',
+        },
+      },
+      image: {
+        class: ImageTool,
+        config: {
+          endpoints: {
+            byFile: 'uploadFile.php', // PHP-Endpunkt für Datei-Uploads
+            byUrl: 'fetchUrl.php',    // PHP-Endpunkt für URL-Uploads
+          },
+          field: 'image',
+          types: 'image/*',
+          caption: true,
+          buttonContent: 'Bild auswählen oder URL einfügen',
+        },
+      },
+    },
+    data: initialContent ? JSON.parse(initialContent) : {}, // Vorhandene Daten laden
+    placeholder: 'Beginne hier mit der Eingabe...',
+    onReady: () => {
+      console.log('Editor.js ist bereit!');
+    },
+  });
+
+  // Editor-Inhalt beim Absenden in verstecktes Input-Feld speichern
+  function submitEditorContent() {
+    return editor.save().then((outputData) => {
+      document.getElementById('postcontent_hidden').value = JSON.stringify(outputData);
+      return true; // Erlaubt das Absenden des Formulars
+    }).catch((error) => {
+      console.error('Fehler beim Speichern des Editor-Inhalts:', error);
+      return false; // Verhindert das Absenden des Formulars
+    });
+  }
+</script>
+
   </body>
 </html>
