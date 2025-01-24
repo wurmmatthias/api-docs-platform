@@ -12,6 +12,12 @@ $topid = $_GET['topid'];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dokumentation App - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
     <style>
       body {
         display: flex;
@@ -37,27 +43,20 @@ $topid = $_GET['topid'];
         text-align: center;
         padding: 10px;
       }
-      .toggle-sidebar-btn {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        z-index: 1000;
-      }
     </style>
   </head>
   <body>
 
   <?php
-  if(!isset($_SESSION['user']))
-  {
+  if (!isset($_SESSION['user'])) {
       header("Location: login_page.php");  
   }
 
   $current_user = $_SESSION['user'];
   ?>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color:rgb(54, 204, 117);">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg" data-bs-theme="dark" style="background-color:rgb(54, 204, 117);">
     <div class="container-fluid">
       <a class="navbar-brand" href="admin_main.php"><b><?php echo __("admin_heading", $language); ?></b></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,31 +83,23 @@ $topid = $_GET['topid'];
 
   <!-- Main content -->
   <div class="main-content">
-
-
-    <!-- Main content area -->
     <div class="container-fluid p-4">
-
-
-
-<?php 
-    echo "
-    <form action='addpost.php' method='POST'>
-        <div class='form-group'>
-            <input type='text' id='author' name='author' value='". $current_user ."' hidden>
-            <input type='text' id='topid' name='topid' value='" . $topid ."' hidden>
-            <input type='text' class='form-control' id='postname' name='postname' placeholder = '".  __("postname", $language) ."'><br>
-            <textarea class='form-control' id='postcontent' name='postcontent' rows='15' placeholder = '".  __("postcontent", $language) ."'></textarea><br><br>
-        </div>
-        <button type='submit' class='btn btn-primary w-100'>".  __("submit", $language) ."</button>
-    </form>";
-?>
-
-
-
-
+      <?php 
+      echo "
+      <form action='addpost.php' method='POST' onsubmit='return saveEditorContent();'>
+          <div class='form-group'>
+              <input type='text' id='author' name='author' value='". $current_user ."' hidden>
+              <input type='text' id='topid' name='topid' value='" . $topid ."' hidden>
+              <input type='text' class='form-control' id='postname' name='postname' placeholder='". __("postname", $language) ."'><br>
+              <!-- Editor container -->
+              <div id='editorjs'></div>
+              <textarea id='postcontent' name='postcontent' hidden></textarea>
+              <br><br>
+          </div>
+          <button type='submit' class='btn btn-primary w-100'>". __("submit", $language) ."</button>
+      </form>";
+      ?>
     </div>
-
   </div>
 
   <!-- Footer -->
@@ -117,9 +108,58 @@ $topid = $_GET['topid'];
   </footer>
 
   <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      sidebar.classList.toggle('collapsed');
+  const editor = new EditorJS({
+    holder: 'editorjs',
+    tools: {
+      header: {
+        class: Header,
+        inlineToolbar: ['bold', 'italic'], // Inline Optionen für Header
+        config: {
+          levels: [2, 3, 4], // Überschriften H2, H3, H4
+          defaultLevel: 3,
+        },
+      },
+      paragraph: {
+        class: Paragraph,
+        inlineToolbar: ['bold', 'italic', 'inlineCode'], // Inline Optionen für Text
+      },
+      inlineCode: InlineCode, // Inline-Code für Text
+      simpleImage: {
+        class: SimpleImage, // Bild hinzufügen (sehr simpel)
+        config: {
+          placeholder: 'Füge hier ein Bild hinzu',
+        },
+      },
+      image: {
+        class: ImageTool,
+        config: {
+          endpoints: {
+            byFile: 'uploadFile.php', // PHP-Endpunkt für Datei-Uploads
+            byUrl: 'fetchUrl.php',    // PHP-Endpunkt für URL-Uploads
+          },
+          field: 'image',
+          types: 'image/*',
+          caption: true,
+          buttonContent: 'Bild auswählen oder URL einfügen',
+        },
+      },
+    },
+    placeholder: 'Beginne hier mit der Eingabe...',
+    onReady: () => {
+      console.log('Editor.js ist bereit!');
+    },
+  });
+
+    function saveEditorContent() {
+      return new Promise((resolve, reject) => {
+        editor.save().then((outputData) => {
+          document.getElementById('postcontent').value = (JSON.stringify(outputData));
+          resolve(true);
+        }).catch((error) => {
+          console.error('Saving failed: ', error);
+          reject(false);
+        });
+      });
     }
   </script>
 

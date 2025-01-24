@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo json_encode([
                     'success' => 1,
                     'file' => [
-                        'url' => 'http://' . $_SERVER['HTTP_HOST'] . '/api-docs-platform/backend/testing/' . $destPath
+                        'url' => 'http://' . $_SERVER['HTTP_HOST'] . '/api-docs-platform/backend/' . $destPath
                     ]
                 ]);
             } else {
