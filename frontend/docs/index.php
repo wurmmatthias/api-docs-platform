@@ -125,7 +125,7 @@ if (mysqli_num_rows($result_postsinfo) > 0) {
   // output data of each row
   while($row_post = mysqli_fetch_assoc($result_postsinfo)) {
     echo "<h1>" . $row_post["name"] ."</h1><br>";
-    echo $row_post["content"];
+    echo jsonToHtml($row_post["content"]);
     echo "<br><br>";
   }
 } else {
@@ -133,6 +133,46 @@ if (mysqli_num_rows($result_postsinfo) > 0) {
 }
 
 mysqli_close($conn);
+
+function jsonToHtml($json) {
+  $data = json_decode($json, true);
+  $html = '';
+
+  foreach ($data['blocks'] as $block) {
+      switch ($block['type']) {
+          case 'header':
+              $html .= '<h' . $block['data']['level'] . '>' . htmlspecialchars($block['data']['text']) . '</h' . $block['data']['level'] . '>';
+              break;
+
+          case 'image':
+              $html .= '<img src="' . htmlspecialchars($block['data']['file']['url']) . '" alt="' . htmlspecialchars($block['data']['caption']) . '"';
+              if ($block['data']['withBorder']) {
+                  $html .= ' style="border: 1px solid #000;"';
+              }
+              if ($block['data']['withBackground']) {
+                  $html .= ' style="background-color: #f0f0f0;"';
+              }
+              if ($block['data']['stretched']) {
+                  $html .= ' style="width: 100%;"';
+              }
+              $html .= ' />';
+              break;
+
+              case 'paragraph':
+                $text = $block['data']['text'];
+
+                /*$text = preg_replace_callback('/<code class=.inline-code.>.*<\/code>/', function ($matches) {
+                    return '<code>' . htmlspecialchars($matches[1]) . '</code>';
+                }, $text);*/
+
+                $html .= '<p>' . $text . '</p>';
+                echo "<script>console.log('Debug Objects: " . $html . "' );</script>";
+                break;
+      }
+  }
+
+  return $html;
+}
 ?>
 
 
