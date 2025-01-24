@@ -169,7 +169,6 @@ $poid = $_GET['poid'];
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script>
-  // JSON-Inhalt aus PHP in Editor.js laden
   const initialContent = <?= json_encode($content); ?>;
 
   const editor = new EditorJS({
@@ -177,19 +176,19 @@ $poid = $_GET['poid'];
     tools: {
       header: {
         class: Header,
-        inlineToolbar: ['bold', 'italic'], // Inline Optionen für Header
+        inlineToolbar: ['bold', 'italic'],
         config: {
-          levels: [2, 3, 4], // Überschriften H2, H3, H4
+          levels: [2, 3, 4],
           defaultLevel: 3,
         },
       },
       paragraph: {
         class: Paragraph,
-        inlineToolbar: ['bold', 'italic', 'inlineCode'], // Inline Optionen für Text
+        inlineToolbar: ['bold', 'italic', 'inlineCode'],
       },
-      inlineCode: InlineCode, // Inline-Code für Text
+      inlineCode: InlineCode,
       simpleImage: {
-        class: SimpleImage, // Bild hinzufügen (sehr simpel)
+        class: SimpleImage,
         config: {
           placeholder: 'Füge hier ein Bild hinzu',
         },
@@ -198,8 +197,8 @@ $poid = $_GET['poid'];
         class: ImageTool,
         config: {
           endpoints: {
-            byFile: 'uploadFile.php', // PHP-Endpunkt für Datei-Uploads
-            byUrl: 'fetchUrl.php',    // PHP-Endpunkt für URL-Uploads
+            byFile: 'uploadFile.php',
+            byUrl: 'fetchUrl.php',
           },
           field: 'image',
           types: 'image/*',
@@ -208,21 +207,20 @@ $poid = $_GET['poid'];
         },
       },
     },
-    data: initialContent ? JSON.parse(initialContent) : {}, // Vorhandene Daten laden
+    data: initialContent ? JSON.parse(initialContent) : {},
     placeholder: 'Beginne hier mit der Eingabe...',
     onReady: () => {
       console.log('Editor.js ist bereit!');
     },
   });
 
-  // Editor-Inhalt beim Absenden in verstecktes Input-Feld speichern
   function submitEditorContent() {
     return editor.save().then((outputData) => {
       document.getElementById('postcontent_hidden').value = JSON.stringify(outputData);
-      return true; // Erlaubt das Absenden des Formulars
+      return true;
     }).catch((error) => {
       console.error('Fehler beim Speichern des Editor-Inhalts:', error);
-      return false; // Verhindert das Absenden des Formulars
+      return false;
     });
   }
 </script>
