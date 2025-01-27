@@ -53,6 +53,10 @@ $row_css = $result_css->fetch_assoc();
         left: 10px;
         z-index: 1000;
       }
+      img {
+        max-width: 600px;
+        height: auto;
+      }
       <?php echo $row_css["css"]; ?>
     </style>
   </head>
