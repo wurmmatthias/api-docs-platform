@@ -48,6 +48,10 @@ else {
         text-align: center;
         padding: 10px;
       }
+      img {
+        max-width: 600px;
+        height: auto;
+      }
       .toggle-sidebar-btn {
         position: absolute;
         top: 10px;
