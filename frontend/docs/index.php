@@ -9,7 +9,9 @@ $result_projectinfo = mysqli_query($conn, $sql_projectinfo);
 $row = $result_projectinfo->fetch_assoc();
 
 $sql_postinfo = "SELECT * FROM posts WHERE to_pid = " . $projekt . "";
-
+$sql_css = "SELECT * FROM custom_css WHERE cid = 1";
+$result_css = mysqli_query($conn, $sql_css);
+$row_css = $result_css->fetch_assoc();
 ?>
 
 <!doctype html>
@@ -19,6 +21,7 @@ $sql_postinfo = "SELECT * FROM posts WHERE to_pid = " . $projekt . "";
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $row["name"]; ?> - <?php echo __("title", $language); ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="../src/img/favicon.ico">
     <style>
       body {
         display: flex;
@@ -50,6 +53,7 @@ $sql_postinfo = "SELECT * FROM posts WHERE to_pid = " . $projekt . "";
         left: 10px;
         z-index: 1000;
       }
+      <?php echo $row_css["css"]; ?>
     </style>
   </head>
   <body>
