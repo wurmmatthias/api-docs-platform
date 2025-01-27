@@ -286,10 +286,15 @@ function jsonToHtml($json) {
 
         case 'paragraph':
             $text = $block['data']['text'];
+            $html .= '<p>' . $text . '</p>';
+            break;
+
+        case 'code':
+            $text = $block['data']['text'];
             $text = preg_replace_callback('/@@(.*?)@@/', function ($matches) {
                 return '<code>' . htmlspecialchars($matches[1]) . '</code>';
             }, $text);
-
+  
             $html .= '<p>' . $text . '</p>';
             break;
     }

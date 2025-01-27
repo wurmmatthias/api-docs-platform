@@ -16,8 +16,9 @@ $topid = $_GET['topid'];
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+    <script src="code"></script>
+
     <style>
       body {
         display: flex;
@@ -123,6 +124,9 @@ $topid = $_GET['topid'];
         class: Paragraph,
         inlineToolbar: ['bold', 'italic'], // Inline Optionen für Text
       },
+      code: {
+        class: code,
+      },
       simpleImage: {
         class: SimpleImage, // Bild hinzufügen (sehr simpel)
         config: {
@@ -149,18 +153,21 @@ $topid = $_GET['topid'];
     },
   });
 
-    function saveEditorContent() {
-      return new Promise((resolve, reject) => {
-        editor.save().then((outputData) => {
-          document.getElementById('postcontent').value = (JSON.stringify(outputData));
-          resolve(true);
-        }).catch((error) => {
-          console.error('Saving failed: ', error);
-          reject(false);
-        });
+  function saveEditorContent() {
+    return new Promise((resolve, reject) => {
+      editor.save().then((outputData) => {
+        document.getElementById('postcontent').value = (JSON.stringify(outputData));
+        resolve(true);
+      }).catch((error) => {
+        console.error('Saving failed: ', error);
+        reject(false);
       });
-    }
-  </script>
+    });
+  }
+</script>
+
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>

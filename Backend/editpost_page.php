@@ -16,8 +16,8 @@ $poid = $_GET['poid'];
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/simple-image@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
+    <script src="code"></script>
     <style>
       body {
         display: flex;
@@ -185,6 +185,9 @@ $poid = $_GET['poid'];
       paragraph: {
         class: Paragraph,
         inlineToolbar: ['bold', 'italic'],
+      },
+      code: {
+        class: code,
       },
       simpleImage: {
         class: SimpleImage,
