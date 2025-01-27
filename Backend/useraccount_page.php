@@ -75,7 +75,7 @@ else {
             <a class="nav-link active" aria-current="page" href="admin_main.php"><?php echo __("edit_projects_heading", $language); ?></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php"><?php echo __("styling_heading", $language); ?></a>
+            <a class="nav-link active" aria-current="page" href="admin_style_settings.php"><?php echo __("styling_heading", $language); ?></a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="useraccount_page.php"><?php echo __("user_account_heading", $language); ?></a>

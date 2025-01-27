@@ -89,7 +89,7 @@ else {
             <a class="nav-link active" aria-current="page" href="admin_main.php">Edit Projects</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="admin_main.php">Styling</a>
+            <a class="nav-link active" aria-current="page" href="admin_style_settings.php">Styling</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="useraccount_page.php">User Account</a>

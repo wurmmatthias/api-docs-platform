@@ -143,37 +143,35 @@ function jsonToHtml($json) {
   $html = '';
 
   foreach ($data['blocks'] as $block) {
-      switch ($block['type']) {
-          case 'header':
-              $html .= '<h' . $block['data']['level'] . '>' . htmlspecialchars($block['data']['text']) . '</h' . $block['data']['level'] . '>';
-              break;
+    switch ($block['type']) {
+        case 'header':
+            $html .= '<h' . $block['data']['level'] . '>' . htmlspecialchars($block['data']['text']) . '</h' . $block['data']['level'] . '>';
+            break;
 
-          case 'image':
-              $html .= '<img src="' . htmlspecialchars($block['data']['file']['url']) . '" alt="' . htmlspecialchars($block['data']['caption']) . '"';
-              if ($block['data']['withBorder']) {
-                  $html .= ' style="border: 1px solid #000;"';
-              }
-              if ($block['data']['withBackground']) {
-                  $html .= ' style="background-color: #f0f0f0;"';
-              }
-              if ($block['data']['stretched']) {
-                  $html .= ' style="width: 100%;"';
-              }
-              $html .= ' />';
-              break;
+        case 'image':
+            $html .= '<img src="' . htmlspecialchars($block['data']['file']['url']) . '" alt="' . htmlspecialchars($block['data']['caption']) . '"';
+            if ($block['data']['withBorder']) {
+                $html .= ' style="border: 1px solid #000;"';
+            }
+            if ($block['data']['withBackground']) {
+                $html .= ' style="background-color: #f0f0f0;"';
+            }
+            if ($block['data']['stretched']) {
+                $html .= ' style="width: 100%;"';
+            }
+            $html .= ' />';
+            break;
 
-              case 'paragraph':
-                $text = $block['data']['text'];
+        case 'paragraph':
+            $text = $block['data']['text'];
+            $text = preg_replace_callback('/@@(.*?)@@/', function ($matches) {
+                return '<code>' . htmlspecialchars($matches[1]) . '</code>';
+            }, $text);
 
-                /*$text = preg_replace_callback('/<code class=.inline-code.>.*<\/code>/', function ($matches) {
-                    return '<code>' . htmlspecialchars($matches[1]) . '</code>';
-                }, $text);*/
-
-                $html .= '<p>' . $text . '</p>';
-                echo "<script>console.log('Debug Objects: " . $html . "' );</script>";
-                break;
-      }
-  }
+            $html .= '<p>' . $text . '</p>';
+            break;
+    }
+}
 
   return $html;
 }
