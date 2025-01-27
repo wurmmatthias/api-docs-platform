@@ -288,7 +288,6 @@ function jsonToHtml($json) {
                 }, $text);*/
 
                 $html .= '<p>' . $text . '</p>';
-                echo "<script>console.log('Debug Objects: " . $html . "' );</script>";
                 break;
       }
   }
