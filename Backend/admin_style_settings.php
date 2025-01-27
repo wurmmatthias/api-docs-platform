@@ -3,6 +3,10 @@ session_start();
 include "connect.php";
 include "../Frontend/locale/language_config.php";
 
+$sql_css = "SELECT * FROM custom_css WHERE cid = 1";
+$result_css = mysqli_query($conn, $sql_css);
+$row_css = $result_css->fetch_assoc();
+
 if (isset($_GET['project'])) {
     $pid = $_GET['project'];
 }
@@ -135,10 +139,7 @@ else {
 
 ?>
 
-<div id="editor">
-  .body {
-    background-color: blue;
-  }
+<div id="editor"><?php echo $row_css["css"]; ?>
 </div>
 
         </div>
