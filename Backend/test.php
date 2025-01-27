@@ -1,18 +1,12 @@
 <?php
-$json = '{"time":1737717957990,"blocks":[{"id":"NSy_xyCY9J","type":"paragraph","data":{"text":"<code class="inline-code">Hier steht Code</code>"}}],"version":"2.30.7"}';
+$value = '{"time":1737967267672,"blocks":[{"id":"xcIq13c1dC","type":"paragraph","data":{"text":"<code class="inline-code">test</code>"}}],"version":"2.30.7"}';
 
-// Doppelte Anführungszeichen in Werten escapen
-$json = preg_replace_callback('/"([^"]*?)":\s*"(.*?)(?<!\\\\)"/', function ($matches) {
-    return '"' . $matches[1] . '": "' . addslashes($matches[2]) . '"';
-}, $json);
+$escapers = array("\\", "/", "\"", "\n", "\r", "\t", "\x08", "\x0c");
+$replacements = array("\\\\", "\\/", "\\\"", "\\n", "\\r", "\\t", "\\f", "\\b");
+$result = str_replace($escapers, $replacements, $value);
 
-// JSON dekodieren
-$data = json_decode($json, true);
-
-if (json_last_error() !== JSON_ERROR_NONE) {
-    die('JSON Decode Error: ' . json_last_error_msg());
-}
-
-// Verarbeiten
-print_r($data);
+echo '<pre>';
+echo($result);
+echo '<pre>';
+echo "<script>console.log('Debug Objects: " . $result . "' );</script>";
 ?>

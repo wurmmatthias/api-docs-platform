@@ -184,9 +184,8 @@ $poid = $_GET['poid'];
       },
       paragraph: {
         class: Paragraph,
-        inlineToolbar: ['bold', 'italic', 'inlineCode'],
+        inlineToolbar: ['bold', 'italic'],
       },
-      inlineCode: InlineCode,
       simpleImage: {
         class: SimpleImage,
         config: {
