@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include "connect.php";
-include "../Frontend/locale/language_config.php";
+include "./locale/language_config.php";
 
 if (isset($_GET['project'])) {
     $pid = $_GET['project'];
@@ -36,8 +36,14 @@ else {
         padding: 20px;
         transition: transform 0.3s ease;
       }
-      .navbar.right {
-        float: right;
+      .navbar-right {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Abstand zwischen den Links */
+      }
+      .navbar-right a {
+        text-decoration: none;
+        color: inherit;
       }
       .sidebar.collapsed {
         transform: translateX(-100%);
@@ -93,6 +99,8 @@ else {
         </ul>
       </div>
       <nav class="navbar-right">
+        <?php if ($pid != "") {echo "<a class='nav-link active' href='../frontend/docs/index.php?doku=".$pid."'>".  __("to_frontend", $language) . "</a>";}?>
+        <?php echo "<a class='nav-link active' href='../frontend/locale/language_config.php?language=lang'>".  __("language", $language) . "</a>";?>
         <a href='logout.php' style="font-size:26px" class='fa fa-sign-out btn shadow-none'></a>
       </nav>
     </div>

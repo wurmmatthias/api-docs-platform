@@ -1,7 +1,7 @@
 <?php
 // possible options 'de' for german language support, 'en' for a site-wide english configuration
-// This setting is only valid for the FRONTEND of the app.
-$global_language_setting = "de";
+// This setting is only valid for the BACKEND of the app.
+$global_language_setting = "en";
 
 
 function loadtranslation($lang) {

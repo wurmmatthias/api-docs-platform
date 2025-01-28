@@ -20,7 +20,7 @@ if (isset($_POST['username'])) {
 
             if(password_verify($passwort_input, $hashed_password)) {
                 $_SESSION['user'] = $user_input;
-                echo '<script type="text/javascript"> window.open("http://localhost/API-DOCS-PLATFORM/Backend/admin_main.php","_self");</script>';
+                echo '<script type="text/javascript"> window.open("http://localhost/API-DOCS-PLATFORM/Backend/userLang.php","_self");</script>';
                 echo "Logged In!";
             } else {
                 echo "Passwort Falsch";

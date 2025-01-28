@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include "connect.php";
-include "../Frontend/locale/language_config.php";
+include "./locale/language_config.php";
 
 $sql_css = "SELECT * FROM custom_css WHERE cid = 1";
 $result_css = mysqli_query($conn, $sql_css);

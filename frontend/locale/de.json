@@ -46,5 +46,8 @@
     
     "custom_css_title": "Benutzerdefiniertes Stylesheet anlegen / editieren",
     "custom_css_desc": "Hier können Sie bestimmte Elemente des Frontends mit Hilfe von CSS manipulieren oder verändern.",
-    "custom_css_sidebar_title": "Aktionen"
+    "custom_css_sidebar_title": "Aktionen",
+
+    "to_frontend": "Projekt im Vorderen-Ende ansehen",
+    "language": "🇬🇧"
 }

@@ -1,7 +1,33 @@
 <?php
 // possible options 'de' for german language support, 'en' for a site-wide english configuration
-// This setting is only valid for the BACKEND of the app.
-$global_language_setting = "en";
+// This setting is only valid for the FRONTEND of the app.
+include "connect.php";
+
+
+$current_user = $_SESSION['user'];
+
+
+$sql_postinfo = "SELECT * FROM user WHERE username ='" . $current_user . "'";
+$result_postsinfo = mysqli_query($conn, $sql_postinfo);
+
+ if (mysqli_num_rows($result_postsinfo) > 0) {
+ // output data of each row
+ while($row_post = mysqli_fetch_assoc($result_postsinfo)) {
+    if ($row_post["lang"] == "de") {
+        echo "de";
+        $global_language_setting = "de";
+    }
+    else if ($row_post["lang"] == "en") {
+        echo "en";
+        $global_language_setting = "en";
+    }
+ }
+ } 
+ else {
+    echo "default";
+    $global_language_setting = "de";
+ }
+
 
 
 function loadtranslation($lang) {

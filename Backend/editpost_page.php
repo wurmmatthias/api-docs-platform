@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include "connect.php";
-include "../Frontend/locale/language_config.php";
+include "./locale/language_config.php";
 $poid = $_GET['poid'];
 ?>
 

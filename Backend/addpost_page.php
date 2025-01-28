@@ -1,7 +1,7 @@
 <?php 
 session_start();
 include "connect.php";
-include "../Frontend/locale/language_config.php";
+include "./locale/language_config.php";
 $topid = $_GET['topid'];
 ?>
 
@@ -20,6 +20,9 @@ $topid = $_GET['topid'];
     <script src="code.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
+
+
+
 
     <style>
       body {
@@ -124,7 +127,7 @@ $topid = $_GET['topid'];
       },
       paragraph: {
         class: Paragraph,
-        inlineToolbar: ['bold', 'italic'], // Inline Optionen für Text
+        inlineToolbar: ['bold', 'italic', 'underline'], // Inline Optionen für Text
       },
       code: {
         class: code,

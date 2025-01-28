@@ -1,6 +1,53 @@
 {
-    "project_edit_title": "Please choose a project in the area on the left side of the screen!",
-    "posts_description": "Here you can edit the posts. Please first select the project in which the post is located.",
+    "toc": "Table of Contents",
+    "copyright": "&copy; 2025 - All rights reserved.",
+    "docs of": "Documentation of",
+    "title": "Documentation App",
+    "no_project_title": "Choose Project to edit",
+    "no_project_description": "Choose a Project from the left to add or edit Posts.",
+    "documentation_empty": "This Project is currently empty...",
+
+    "firstname": "Firstname",
+    "lastname": "Lastname",
+    "old_password": "Current Password",
+    "new_password": "New Password",
+    "retype_new_password": "Please re-enter your new Password",
+    "confirm_with_password": "Please confirm with Password",
+    "delete_user?": "Delete User?",
+    "delete_user_confirmation": "Are you sure that you want to delete your Account?",
+
+    "all_projects": "All Projects",
+    "projectname": "Projectname",
+    "edit_project_name": "Change Projectname",
+    "projectdescription": "Projectdescription",
+    "postname": "Postname",
+    "postcontent": "Your content goes here!",
+    "add_post": "Add Post",
+    "add_post?": "Add Post?",
+    "add_project": "Add Project",
+    "add_project?": "Add Project?",
+    "delete_project?": "Delete Project?",
+    "delete_post?": "Delete Post?",
+    "delete_project_description": "Are you sure that you want to delete your Project?",
+    "delete_post_description": "Are you sure that you want to delete your Post?",
+
+    "admin_heading": "Admin Area",
+    "edit_projects_heading": "Edit Projects",
+    "styling_heading": "Styling",
+    "user_account_heading": "Useraccount",
+    "edit_profile_heading": "Edit Profile",
+
+    "submit": "Submit",
+    "edit": "Edit",
+    "change_password": "Change Password",
+    "close": "Close",
+    "delete": "Delete",
+    "delete_user": "Delete User",
+    
     "custom_css_title": "Custom CSS changes",
-    "custom_css_desc": "You can edit or control certain elements of your frontend design here."
+    "custom_css_desc": "You can edit or control certain elements of your frontend design here.",
+    "custom_css_sidebar_title": "Actions",
+
+    "to_frontend": "View in Frontend",
+    "language": "🇩🇪"
 }
