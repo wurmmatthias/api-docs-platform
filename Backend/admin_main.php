@@ -297,6 +297,11 @@ function jsonToHtml($json) {
   
             $html .= '<p>' . $text . '</p>';
             break;
+
+        case 'raw':
+          $text = $block['data']['html'];
+          $html =  $text;
+          break;
     }
 }
 

@@ -18,6 +18,7 @@ $poid = $_GET['poid'];
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
     <script src="code.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw@latest"></script>
     <style>
       body {
         display: flex;
@@ -208,6 +209,7 @@ $poid = $_GET['poid'];
           buttonContent: 'Bild auswählen oder URL einfügen',
         },
       },
+      raw: RawTool,
     },
     data: initialContent ? JSON.parse(initialContent) : {},
     placeholder: 'Beginne hier mit der Eingabe...',

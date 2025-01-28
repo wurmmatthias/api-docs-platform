@@ -18,6 +18,7 @@ $topid = $_GET['topid'];
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/paragraph@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
     <script src="code.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw@latest"></script>
 
     <style>
       body {
@@ -146,6 +147,7 @@ $topid = $_GET['topid'];
           buttonContent: 'Bild auswählen oder URL einfügen',
         },
       },
+      raw: RawTool,
     },
     placeholder: 'Beginne hier mit der Eingabe...',
     onReady: () => {
