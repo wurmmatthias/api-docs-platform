@@ -302,11 +302,34 @@ function jsonToHtml($json) {
           $text = $block['data']['html'];
           $html =  $text;
           break;
+
+        case 'table':
+            $rows = $block['data']['content'];
+            $withHeadings = $block['data']['withHeadings'] ?? false; // Standardmäßig false, falls nicht gesetzt
+            
+            $html .= '<table border="1" cellspacing="0" cellpadding="5">';
+            foreach ($rows as $rowIndex => $row) {
+                $html .= '<tr>';
+                foreach ($row as $cellIndex => $cell) {
+                    if ($withHeadings && $rowIndex === 0) {
+                        // Erste Zeile als Header, wenn withHeadings true ist
+                        $html .= '<th>' . htmlspecialchars($cell) . '</th>';
+                    } else {
+                        // Alle anderen Zellen als normale Tabellenzellen
+                        $html .= '<td>' . htmlspecialchars($cell) . '</td>';
+                    }
+                }
+                $html .= '</tr>';
+            }
+            $html .= '</table>';
+            break;
     }
-}
+  }
 
   return $html;
 }
+
+
 ?>
 
 

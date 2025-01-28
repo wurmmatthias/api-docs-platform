@@ -19,6 +19,7 @@ $poid = $_GET['poid'];
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@latest"></script>
     <script src="code.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
     <style>
       body {
         display: flex;
@@ -210,6 +211,16 @@ $poid = $_GET['poid'];
         },
       },
       raw: RawTool,
+      table: {
+      class: Table,
+      inlineToolbar: true,
+      config: {
+        rows: 2,
+        cols: 3,
+        maxRows: 5,
+        maxCols: 5,
+      },
+    },
     },
     data: initialContent ? JSON.parse(initialContent) : {},
     placeholder: 'Beginne hier mit der Eingabe...',
