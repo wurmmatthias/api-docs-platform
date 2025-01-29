@@ -18,6 +18,8 @@ else {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Documentation App - Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <style>
       body {
         display: flex;
@@ -33,6 +35,15 @@ else {
         background-color: #f8f9fa;
         padding: 20px;
         transition: transform 0.3s ease;
+      }
+      .navbar-right {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Abstand zwischen den Links */
+      }
+      .navbar-right a {
+        text-decoration: none;
+        color: inherit;
       }
       .sidebar.collapsed {
         transform: translateX(-100%);
@@ -83,6 +94,7 @@ else {
         </ul>
       </div>
       <nav class="navbar-right">
+        <?php echo "<a class='nav-link active' href='userLang.php'>".  __("language", $language) . "</a>";?>
         <a href='logout.php' style="font-size:26px" class='fa fa-sign-out btn shadow-none'></a>
       </nav>
     </div>

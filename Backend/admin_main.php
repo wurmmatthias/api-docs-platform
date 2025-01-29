@@ -100,7 +100,7 @@ else {
       </div>
       <nav class="navbar-right">
         <?php if ($pid != "") {echo "<a class='nav-link active' href='../frontend/docs/index.php?doku=".$pid."'>".  __("to_frontend", $language) . "</a>";}?>
-        <?php echo "<a class='nav-link active' href='../frontend/locale/language_config.php?language=lang'>".  __("language", $language) . "</a>";?>
+        <?php echo "<a class='nav-link active' href='userLang.php'>".  __("language", $language) . "</a>";?>
         <a href='logout.php' style="font-size:26px" class='fa fa-sign-out btn shadow-none'></a>
       </nav>
     </div>

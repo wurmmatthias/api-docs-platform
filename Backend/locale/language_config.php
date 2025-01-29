@@ -1,6 +1,4 @@
 <?php
-// possible options 'de' for german language support, 'en' for a site-wide english configuration
-// This setting is only valid for the FRONTEND of the app.
 include "connect.php";
 
 
@@ -14,17 +12,14 @@ $result_postsinfo = mysqli_query($conn, $sql_postinfo);
  // output data of each row
  while($row_post = mysqli_fetch_assoc($result_postsinfo)) {
     if ($row_post["lang"] == "de") {
-        echo "de";
         $global_language_setting = "de";
     }
     else if ($row_post["lang"] == "en") {
-        echo "en";
         $global_language_setting = "en";
     }
  }
  } 
  else {
-    echo "default";
     $global_language_setting = "de";
  }
 

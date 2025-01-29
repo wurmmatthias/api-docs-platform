@@ -36,6 +36,15 @@ $poid = $_GET['poid'];
         padding: 20px;
         transition: transform 0.3s ease;
       }
+      .navbar-right {
+        display: flex;
+        align-items: center;
+        gap: 10px; /* Abstand zwischen den Links */
+      }
+      .navbar-right a {
+        text-decoration: none;
+        color: inherit;
+      }
       .sidebar.collapsed {
         transform: translateX(-100%);
       }
@@ -85,6 +94,7 @@ $poid = $_GET['poid'];
         </ul>
       </div>
       <nav class="navbar-right">
+        <?php echo "<a class='nav-link active' href='userLang.php'>".  __("language", $language) . "</a>";?>
         <a href='logout.php' style="font-size:26px" class='fa fa-sign-out btn shadow-none'></a>
       </nav>
     </div>
