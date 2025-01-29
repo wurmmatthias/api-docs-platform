@@ -137,7 +137,7 @@ $topid = $_GET['topid'];
       },
       paragraph: {
         class: Paragraph,
-        inlineToolbar: ['bold', 'italic', 'underline'], // Inline Optionen für Text
+        inlineToolbar: ['bold', 'italic'], // Inline Optionen für Text
       },
       code: {
         class: code,
